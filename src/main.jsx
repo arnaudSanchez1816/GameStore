@@ -1,5 +1,6 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
+import "modern-normalize"
 import "./index.css"
 import App from "./App.jsx"
 import {
@@ -8,13 +9,13 @@ import {
     Route,
     RouterProvider,
 } from "react-router-dom"
-import TemplateView from "./components/views/TemplateView/TemplateView.jsx"
-import ErrorView from "./components/views/ErrorView/ErrorView.jsx"
+import ErrorView from "./views/ErrorView/ErrorView.jsx"
+import Home from "./views/Home/Home.jsx"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />} errorElement={<ErrorView />}>
-            <Route index element={<TemplateView />}></Route>
+            <Route index element={<Home />}></Route>
         </Route>
     )
 )
