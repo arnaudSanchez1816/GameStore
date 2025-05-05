@@ -1,0 +1,34 @@
+.game-tile {
+    display: block;
+    position: relative;
+
+    &:visited {
+        color: inherit;
+    }
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0 0 0 / 60%);
+    display: none;
+}
+
+.game-tile:hover > .caption {
+    display: block;
+}
+
+.title {
+    margin: 0;
+    padding: 0.5rem;
+    text-align: left;
+}

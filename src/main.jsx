@@ -11,11 +11,12 @@ import {
 } from "react-router-dom"
 import ErrorView from "./views/ErrorView/ErrorView.jsx"
 import Home from "./views/Home/Home.jsx"
+import { loader as indexLoader } from "./routes/index.js"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />} errorElement={<ErrorView />}>
-            <Route index element={<Home />}></Route>
+            <Route index element={<Home />} loader={indexLoader}></Route>
         </Route>
     )
 )

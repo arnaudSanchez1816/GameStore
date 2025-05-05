@@ -1,0 +1,25 @@
+.game-carousel {
+    position: relative;
+}
+
+.container {
+    overflow: auto;
+    padding: 0.5rem 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    width: fit-content;
+}
+
+.item {
+    height: 300px;
+    width: 200px;
+}

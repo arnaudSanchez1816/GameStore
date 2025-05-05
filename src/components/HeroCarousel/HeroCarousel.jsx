@@ -3,6 +3,10 @@ import HeroCarouselItem from "./HeroCarouselItem"
 import { useEffect, useRef, useState } from "react"
 import clsx from "clsx"
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
+import {
+    CarouselControlLeft,
+    CarouselControlRight,
+} from "../CarouselControl/CarouselControl"
 
 const DEFAULT_ITEMS = [
     {
@@ -184,7 +188,7 @@ function HeroCarousel({
                                     style["row-item"],
                                     isActive && style["active"]
                                 )}
-                                key={item.gameId}
+                                key={mapIndex}
                             >
                                 <HeroCarouselItem data={item} />
                             </li>
@@ -192,26 +196,10 @@ function HeroCarousel({
                     })}
                 </ol>
                 {index > 0 && (
-                    <div className={style["controls-left"]}>
-                        <button
-                            className={style["controls-btn"]}
-                            type="button"
-                            onClick={onLeftControls}
-                        >
-                            <Icon icon="mdi:chevron-left" />
-                        </button>
-                    </div>
+                    <CarouselControlLeft onControlClick={onLeftControls} />
                 )}
                 {index < items.length - 1 && (
-                    <div className={style["controls-right"]}>
-                        <button
-                            className={style["controls-btn"]}
-                            type="button"
-                            onClick={onRightControls}
-                        >
-                            <Icon icon="mdi:chevron-right" />
-                        </button>
-                    </div>
+                    <CarouselControlRight onControlClick={onRightControls} />
                 )}
             </div>
             <ol className={style["dots-list"]}>

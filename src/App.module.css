@@ -1,0 +1,8 @@
+.app {
+    width: 100%;
+}
+
+.content {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+}
