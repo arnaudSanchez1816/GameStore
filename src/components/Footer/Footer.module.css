@@ -36,9 +36,23 @@
     }
 }
 
-.socials > .icons {
-    display: flex;
-    gap: 0.5rem;
+.socials {
+    justify-self: flex-end;
+
+    & > .icons {
+        display: flex;
+        gap: 0.5rem;
+    }
+}
+
+.logo {
+    width: 300px;
+    height: auto;
+    justify-self: flex-start;
+}
+
+.icon {
+    font-size: 34px;
 }
 
 .social-link {
@@ -59,20 +73,11 @@
     }
 }
 
-.logo {
-    width: 300px;
-    height: auto;
-}
-
 .source-link {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-}
-
-.icon {
-    font-size: 34px;
 }
 
 .legals {
