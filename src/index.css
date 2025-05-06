@@ -1,36 +1,37 @@
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
     background-color: var(--background-color-1);
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    color: var(--text-color-light);
 
     --page-max-width: 1280px;
+    --text-color-light: rgb(255 255 255 / 87%);
+    --text-color-dark: rgb(0 0 0 / 87%);
     --background-color-0: #121212;
     --background-color-1: #282828;
     --background-color-2: #3f3f3f;
     --background-color-3: #575757;
     --background-color-4: #717171;
     --background-color-5: #8b8b8b;
+    --primary-color-0: #2fcc70;
+    --primary-color-1: #54d280;
+    --primary-color-2: #6fd88f;
+    --primary-color-3: #87de9f;
+    --primary-color-4: #9de4af;
+    --primary-color-5: #b1eabe;
 }
 
 a {
     font-weight: 500;
-    color: #fff;
+    color: var(--text-color-light);
     text-decoration: inherit;
 }
 
 a:visited {
-    color: #fff;
+    color: var(--text-color-light);
 }
 
 a:hover {
-    color: green;
+    color: var(--primary-color-3);
 }
 
 body {
@@ -45,23 +46,18 @@ h1 {
 
 button {
     border-radius: 8px;
-    border: 1px solid transparent;
+    border: none;
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: var(--primary-color-2);
+    color: var(--text-color-dark);
     cursor: pointer;
-    transition: border-color 0.25s;
 }
 
 button:hover {
-    border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+    background-color: var(--primary-color-4);
 }
 
 @media (prefers-color-scheme: light) {

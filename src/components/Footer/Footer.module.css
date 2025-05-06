@@ -23,19 +23,6 @@
     }
 }
 
-.info-link {
-    font-size: 1rem;
-    color: #fff;
-
-    &:visited {
-        color: #fff;
-    }
-
-    &:hover {
-        color: green;
-    }
-}
-
 .socials {
     justify-self: flex-end;
 
@@ -55,29 +42,37 @@
     font-size: 34px;
 }
 
-.social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.footer-link {
+    color: var(--text-color-light);
     text-decoration: none;
-    height: fit-content;
-    transition: color 200ms;
-    color: #fff;
 
     &:visited {
-        color: #fff;
+        color: var(--text-color-light);
     }
 
     &:hover {
-        color: green;
+        color: var(--primary-color-2);
     }
 }
 
+.social-link {
+    composes: footer-link;
+    transition: color 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .source-link {
+    composes: footer-link;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+}
+
+.info-link {
+    composes: footer-link;
 }
 
 .legals {
