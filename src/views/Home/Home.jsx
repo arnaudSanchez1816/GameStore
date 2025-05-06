@@ -4,9 +4,39 @@ import GameTile from "../../components/GameTile/GameTile"
 import HeroCarousel from "../../components/HeroCarousel/HeroCarousel"
 import style from "./Home.module.css"
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
+import { useMemo } from "react"
+import {
+    ACTION_GENRE,
+    ADVENTURE_GENRE,
+    CASUAL_GENRE,
+    FIGHTING_GENRE,
+    genres,
+    INDIE_GENRE,
+    RACING_GENRE,
+    RPG_GENRE,
+    SHOOTER_GENRE,
+    SPORTS_GENRE,
+    STRATEGY_GENRE,
+} from "../../data/genres"
 
 function Home() {
     const { popularGames, latestRelease, highlightedGames } = useLoaderData()
+
+    const genresList = useMemo(() => {
+        const listedGenresId = [
+            ACTION_GENRE,
+            RPG_GENRE,
+            FIGHTING_GENRE,
+            INDIE_GENRE,
+            SHOOTER_GENRE,
+            ADVENTURE_GENRE,
+            STRATEGY_GENRE,
+            CASUAL_GENRE,
+            RACING_GENRE,
+            SPORTS_GENRE,
+        ]
+        return genres.filter((genre) => listedGenresId.includes(genre.id))
+    }, [])
 
     return (
         <>
@@ -20,24 +50,24 @@ function Home() {
                 <h2>Last releases</h2>
                 <GameCarousel items={latestRelease} />
             </div>
-            <div className={style["section"]}>
+            <div className={style["genres"]}>
                 <h2>Genres</h2>
-                <div>
-                    <div>
-                        <button type="button">Action</button>
-                    </div>
-                    <div>
-                        <button type="button">RPG</button>
-                    </div>
-                    <div>
-                        <button type="button">Shooter</button>
-                    </div>
-                    <div>
-                        <button type="button">Strategy</button>
-                    </div>
-                    <div>
-                        <button type="button">Adventure</button>
-                    </div>
+                <div className={style["genres-container"]}>
+                    {genresList.map((genre) => (
+                        <button
+                            className={style["genre-btn"]}
+                            type="button"
+                            key={genre.id}
+                        >
+                            <span className={style["genre-name"]}>
+                                {genre.name}
+                            </span>
+                            <Icon
+                                className={style["genre-icon"]}
+                                icon={genre.icon}
+                            />
+                        </button>
+                    ))}
                 </div>
             </div>
             <div className={style["popular-games"]}>

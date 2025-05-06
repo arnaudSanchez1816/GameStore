@@ -4,6 +4,37 @@
     margin: 0 auto;
 }
 
+.genres {
+    composes: section;
+    padding: var(--section-padding);
+}
+
+.genres-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 100px;
+    gap: 1rem;
+}
+
+.genre-btn {
+    position: relative;
+
+    .genre-name {
+        font-size: 1.2rem;
+        position: absolute;
+        left: 1rem;
+        bottom: 0.5rem;
+    }
+
+    .genre-icon {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        font-size: 2rem;
+        color: var(--text-color-light-medium);
+    }
+}
+
 .popular-games {
     composes: section;
     padding: var(--section-padding);
