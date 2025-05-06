@@ -18,6 +18,7 @@ import {
     SPORTS_GENRE,
     STRATEGY_GENRE,
 } from "../../data/genres"
+import clsx from "clsx"
 
 function Home() {
     const { popularGames, latestRelease, highlightedGames } = useLoaderData()
@@ -40,7 +41,7 @@ function Home() {
 
     return (
         <>
-            <div className={style["section"]}>
+            <div className={style["hero"]}>
                 <HeroCarousel
                     items={highlightedGames}
                     options={{ autoScroll: true }}
@@ -54,9 +55,9 @@ function Home() {
                 <h2>Genres</h2>
                 <div className={style["genres-container"]}>
                     {genresList.map((genre) => (
-                        <button
-                            className={style["genre-btn"]}
-                            type="button"
+                        <a
+                            href="#"
+                            className={clsx("button", style["genre-link"])}
                             key={genre.id}
                         >
                             <span className={style["genre-name"]}>
@@ -66,7 +67,7 @@ function Home() {
                                 className={style["genre-icon"]}
                                 icon={genre.icon}
                             />
-                        </button>
+                        </a>
                     ))}
                 </div>
             </div>

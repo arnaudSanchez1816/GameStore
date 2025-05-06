@@ -4,6 +4,11 @@
     margin: 0 auto;
 }
 
+.hero {
+    composes: section;
+    padding: var(--section-padding);
+}
+
 .genres {
     composes: section;
     padding: var(--section-padding);
@@ -16,8 +21,12 @@
     gap: 1rem;
 }
 
-.genre-btn {
+.genre-link {
     position: relative;
+
+    &:hover {
+        color: var(--text-color-light);
+    }
 
     .genre-name {
         font-size: 1.2rem;
