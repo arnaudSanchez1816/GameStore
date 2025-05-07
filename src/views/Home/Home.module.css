@@ -24,10 +24,6 @@
 .genre-link {
     position: relative;
 
-    &:hover {
-        color: var(--text-color-light);
-    }
-
     .genre-name {
         font-size: 1.2rem;
         position: absolute;
@@ -51,25 +47,15 @@
 
 .popular-games-grid {
     display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: 0.5rem;
+    grid-template-columns: repeat(4, 302px);
+    gap: 1.5rem;
 }
 
-.popular-games-grid > .popular-games-item {
-    background: black;
-    position: relative;
-    aspect-ratio: 1.5;
-
-    & > * {
-        height: 100%;
-        width: 100%;
-    }
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.popular-games > .all-games-link {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    margin-top: 2rem;
 }
 
 .newsletter {

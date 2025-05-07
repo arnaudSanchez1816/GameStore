@@ -1,34 +1,49 @@
 .game-tile {
     display: block;
     position: relative;
-
-    &:visited {
-        color: inherit;
-    }
 }
 
 .image {
     display: block;
-    width: 100%;
-    height: auto;
+    width: 300px;
+    height: 200px;
     object-fit: cover;
+    border-radius: var(--border-radius-medium);
 }
 
-.caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgb(0 0 0 / 60%);
-    display: none;
-}
-
-.game-tile:hover > .caption {
+.link {
     display: block;
+    transition: transform ease-in-out 200ms;
 }
 
-.title {
+.link:visited {
+    color: inherit;
+}
+
+.link:hover {
+    transform: scale(105%);
+}
+
+.details {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.name {
+    display: block;
     margin: 0;
-    padding: 0.5rem;
+    padding: 0;
     text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.price {
+    display: block;
+    font-weight: bold;
+    font-size: 1.3rem;
 }

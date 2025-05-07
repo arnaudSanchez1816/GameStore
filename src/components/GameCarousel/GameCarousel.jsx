@@ -5,6 +5,7 @@ import {
 } from "../CarouselControl/CarouselControl"
 import { useEffect, useRef, useState } from "react"
 import GameTile from "../GameTile/GameTile"
+import { getThumbnailLink } from "../../utils"
 
 function GameCarousel({ items }) {
     const [containerScrollLeft, setContainerScrollLeft] = useState(0)
@@ -69,7 +70,11 @@ function GameCarousel({ items }) {
                 <ol className={style["list"]}>
                     {items.map((item, mapIndex) => (
                         <li key={mapIndex} className={style["item"]}>
-                            <GameTile gameData={item} />
+                            <GameTile
+                                name={item.name}
+                                background_image={getThumbnailLink(item)}
+                                price={item.price}
+                            />
                         </li>
                     ))}
                 </ol>

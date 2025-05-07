@@ -19,6 +19,7 @@ import {
     STRATEGY_GENRE,
 } from "../../data/genres"
 import clsx from "clsx"
+import { getThumbnailLink } from "../../utils"
 
 function Home() {
     const { popularGames, latestRelease, highlightedGames } = useLoaderData()
@@ -48,7 +49,7 @@ function Home() {
                 />
             </div>
             <div className={style["section"]}>
-                <h2>Last releases</h2>
+                <h2>Latest releases</h2>
                 <GameCarousel items={latestRelease} />
             </div>
             <div className={style["genres"]}>
@@ -79,11 +80,20 @@ function Home() {
                             key={index}
                             className={style["popular-games-item"]}
                         >
-                            <GameTile gameData={item} />
+                            <GameTile
+                                name={item.name}
+                                price={item.price}
+                                background_image={getThumbnailLink(item)}
+                            />
                         </div>
                     ))}
                 </div>
-                <button type="button">Display all games</button>
+                <a
+                    className={clsx("button", style["all-games-link"])}
+                    href="/games/"
+                >
+                    Display all games
+                </a>
             </div>
             <div className={style["newsletter"]}>
                 <div className={style["section"]}>

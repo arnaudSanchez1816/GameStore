@@ -1,9 +1,15 @@
-import { gamesDB, testGames } from "../data/games"
+import { getBestOfYear, getLatestReleases, getPopularGames } from "../data/api"
 
-export function loader() {
+export async function loader() {
+    const [latestReleases, popularGames, bestOfYear] = await Promise.all([
+        getLatestReleases(12),
+        getPopularGames(24),
+        getBestOfYear(10),
+    ])
+
     return {
-        highlightedGames: gamesDB,
-        popularGames: testGames,
-        latestRelease: testGames,
+        highlightedGames: bestOfYear,
+        popularGames: popularGames,
+        latestRelease: latestReleases,
     }
 }

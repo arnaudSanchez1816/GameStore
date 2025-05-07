@@ -14,9 +14,12 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgb(0 0 0 / 100%), transparent 35%);
+    border-bottom-left-radius: var(--border-radius-medium);
+    border-bottom-right-radius: var(--border-radius-medium);
 }
 
 .image {
+    border-radius: var(--border-radius-medium);
     display: block;
     object-fit: cover;
     width: 100%;

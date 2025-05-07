@@ -1,15 +1,20 @@
 import style from "./GameTile.module.css"
 
-function GameTile({ gameData }) {
-    const { id, name, background_image } = gameData
-
+function GameTile({ name, background_image, price }) {
     return (
-        <a className={style["game-tile"]} href="#">
-            <img className={style["image"]} src={background_image} alt={name} />
-            <div className={style["caption"]}>
-                <p className={style["title"]}>{name}</p>
+        <div className={style["game-tile"]}>
+            <a className={style["link"]} href="#">
+                <img
+                    className={style["image"]}
+                    src={background_image}
+                    alt={name}
+                />
+            </a>
+            <div className={style["details"]}>
+                <span className={style["name"]}>{name}</span>
+                <span className={style["price"]}>{price}</span>
             </div>
-        </a>
+        </div>
     )
 }
 
