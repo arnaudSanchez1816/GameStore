@@ -12,10 +12,16 @@ import {
 import ErrorView from "./views/ErrorView/ErrorView.jsx"
 import Home from "./views/Home/Home.jsx"
 import { loader as indexLoader } from "./routes/index.js"
+import GlobalSpinner from "./components/GlobalSpinner/GlobalSpinner.jsx"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<App />} errorElement={<ErrorView />}>
+        <Route
+            path="/"
+            element={<App />}
+            errorElement={<ErrorView />}
+            hydrateFallbackElement={<GlobalSpinner />}
+        >
             <Route index element={<Home />} loader={indexLoader}></Route>
         </Route>
     )
