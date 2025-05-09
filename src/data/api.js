@@ -99,6 +99,27 @@ export async function getGameDetails(gameId) {
     }
 }
 
+export async function getGameScreenshots(gameId) {
+    try {
+        const params = new URLSearchParams()
+        params.append("key", RAWG_API_KEY)
+        params.append("page_size", 8)
+
+        const response = await fetch(
+            `https://api.rawg.io/api/games/${gameId}/screenshots?${params}`
+        )
+
+        if (response.status >= 400) {
+            throw new Error(response.statusText)
+        }
+
+        const screenshotsJson = await response.json()
+        return screenshotsJson.results
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 function getRequestedGames(json, nbGames) {
     const filteredGames = filterNSFWGames(json.results)
     const requestedGames = filteredGames.slice(
