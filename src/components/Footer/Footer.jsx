@@ -97,6 +97,8 @@ function Footer() {
                     </p>
                     <a
                         className={style["source-link"]}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         href="https://github.com/arnaudSanchez1816/shopping-cart"
                     >
                         <Icon
