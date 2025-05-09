@@ -1,11 +1,11 @@
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 import style from "./Header.module.css"
-import { Form } from "react-router-dom"
+import { Form, Link } from "react-router-dom"
 
 function Header() {
     return (
         <header className={style["header"]}>
-            <a className={style["app-logo"]} href="/" title="Home"></a>
+            <Link className={style["app-logo"]} to="/" title="Home"></Link>
             <div className={style["search-bar-container"]}>
                 <Form>
                     <input
@@ -21,9 +21,9 @@ function Header() {
                 </Form>
             </div>
             <div className={style["header-right"]}>
-                <a className={style["cart-link"]} href="/cart/">
+                <Link className={style["cart-link"]} to="/cart/">
                     <Icon icon="material-symbols:shopping-cart-outline" />
-                </a>
+                </Link>
                 <button className={style["user-btn"]} type="button">
                     <Icon icon="material-symbols:account-circle-outline" />
                 </button>

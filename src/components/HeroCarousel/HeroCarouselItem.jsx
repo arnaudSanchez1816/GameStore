@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom"
 import style from "./HeroCarouselItem.module.css"
 
 function HeroCarouselItem({ data }) {
-    const { name, background_image, price } = data
+    const { name, background_image, price, id } = data
 
     return (
-        <a className={style["hero-carousel-item"]} href="#">
+        <Link className={style["hero-carousel-item"]} to={`/game/${id}`}>
             <img className={style["image"]} src={background_image} alt={name} />
             <div className={style["caption"]}>
                 <div className={style["caption-container"]}>
@@ -17,7 +18,7 @@ function HeroCarouselItem({ data }) {
                     </div>
                 </div>
             </div>
-        </a>
+        </Link>
     )
 }
 

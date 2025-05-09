@@ -79,6 +79,26 @@ export async function getBestOfYear(nbResults) {
     }
 }
 
+export async function getGameDetails(gameId) {
+    try {
+        const params = new URLSearchParams()
+        params.append("key", RAWG_API_KEY)
+
+        const response = await fetch(
+            `https://api.rawg.io/api/games/${gameId}?${params}`
+        )
+
+        if (response.status >= 400) {
+            throw new Error(response.statusText)
+        }
+
+        const gameJson = await response.json()
+        return addGamePriceToGame(gameJson)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 function getRequestedGames(json, nbGames) {
     const filteredGames = filterNSFWGames(json.results)
     const requestedGames = filteredGames.slice(
@@ -108,13 +128,14 @@ function filterNSFWGames(games) {
 function generateGamePrices(games) {
     const results = []
     for (let i = 0; i < games.length; i++) {
-        const result = games[i]
-        results.push({
-            ...result,
-            price: generateRandomPrice(result.id),
-        })
+        const game = games[i]
+        results.push(addGamePriceToGame(game))
     }
     return results
+}
+
+function addGamePriceToGame(game) {
+    return { ...game, price: generateRandomPrice(game.id) }
 }
 
 function generateRandomPrice(gameId, minPrice = 5, maxPrice = 70) {

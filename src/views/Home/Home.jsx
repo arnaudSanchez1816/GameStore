@@ -80,11 +80,7 @@ function Home() {
                             key={index}
                             className={style["popular-games-item"]}
                         >
-                            <GameTile
-                                name={item.name}
-                                price={item.price}
-                                background_image={getThumbnailLink(item)}
-                            />
+                            <GameTile game={item} />
                         </div>
                     ))}
                 </div>

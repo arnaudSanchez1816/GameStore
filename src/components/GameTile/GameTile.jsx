@@ -1,15 +1,19 @@
+import { Link } from "react-router-dom"
+import { getThumbnailLink } from "../../utils"
 import style from "./GameTile.module.css"
 
-function GameTile({ name, background_image, price }) {
+function GameTile({ game }) {
+    const { name, background_image, price, id } = game
+
     return (
         <div className={style["game-tile"]}>
-            <a className={style["link"]} href="#">
+            <Link className={style["link"]} to={`/game/${id}`}>
                 <img
                     className={style["image"]}
-                    src={background_image}
+                    src={getThumbnailLink(background_image)}
                     alt={name}
                 />
-            </a>
+            </Link>
             <div className={style["details"]}>
                 <span className={style["name"]}>{name}</span>
                 <span className={style["price"]}>{price}</span>

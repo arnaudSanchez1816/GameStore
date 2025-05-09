@@ -12,13 +12,12 @@ export function lerp(a, b, t) {
     return a * (1 - t) + b * t
 }
 
-export function getThumbnailLink(gameData) {
-    const background_image = gameData.background_image
+export function getThumbnailLink(backgroundImageLink) {
     const regex = /^https:\/\/media\.rawg\.io\/media\/(games\/.*)$/
-    const matchResult = background_image.match(regex)
+    const matchResult = backgroundImageLink.match(regex)
     if (!matchResult) {
         console.error("Failed to match thumbnail link regex")
-        return background_image
+        return backgroundImageLink
     }
 
     return `https://media.rawg.io/media/crop/600/400/${matchResult[1]}`

@@ -70,11 +70,7 @@ function GameCarousel({ items }) {
                 <ol className={style["list"]}>
                     {items.map((item, mapIndex) => (
                         <li key={mapIndex} className={style["item"]}>
-                            <GameTile
-                                name={item.name}
-                                background_image={getThumbnailLink(item)}
-                                price={item.price}
-                            />
+                            <GameTile game={item} />
                         </li>
                     ))}
                 </ol>
