@@ -19,7 +19,7 @@ import {
     STRATEGY_GENRE,
 } from "../../data/genres"
 import clsx from "clsx"
-import { getThumbnailLink } from "../../utils"
+import HomeHeroCarouselItem from "../../components/HeroCarousel/HomeHeroCarouselItem"
 
 function Home() {
     const { popularGames, latestRelease, highlightedGames } = useLoaderData()
@@ -43,10 +43,11 @@ function Home() {
     return (
         <>
             <div className={style["hero"]}>
-                <HeroCarousel
-                    items={highlightedGames}
-                    options={{ autoScroll: true }}
-                />
+                <HeroCarousel options={{ autoScroll: true }}>
+                    {highlightedGames.map((game) => (
+                        <HomeHeroCarouselItem data={game} />
+                    ))}
+                </HeroCarousel>
             </div>
             <div className={style["section"]}>
                 <h2>Latest releases</h2>

@@ -1,0 +1,11 @@
+.section {
+    max-width: var(--page-max-width);
+    width: 100%;
+    margin: 0 auto;
+}
+
+.hero,
+.details {
+    composes: section;
+    padding: var(--section-padding);
+}

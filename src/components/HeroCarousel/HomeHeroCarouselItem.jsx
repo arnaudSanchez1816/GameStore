@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
-import style from "./HeroCarouselItem.module.css"
+import style from "./HomeHeroCarouselItem.module.css"
 
-function HeroCarouselItem({ data }) {
+function HomeHeroCarouselItem({ data }) {
     const { name, background_image, price, id } = data
 
     return (
@@ -22,4 +22,4 @@ function HeroCarouselItem({ data }) {
     )
 }
 
-export default HeroCarouselItem
+export default HomeHeroCarouselItem

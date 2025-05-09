@@ -5,7 +5,6 @@ import {
 } from "../CarouselControl/CarouselControl"
 import { useEffect, useRef, useState } from "react"
 import GameTile from "../GameTile/GameTile"
-import { getThumbnailLink } from "../../utils"
 
 function GameCarousel({ items }) {
     const [containerScrollLeft, setContainerScrollLeft] = useState(0)
