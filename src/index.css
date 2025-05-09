@@ -8,9 +8,12 @@
     --text-color-light-medium: rgb(255 255 255 / 60%);
     --text-color-light-disabled: rgb(255 255 255 / 38%);
     --text-color-dark: rgb(0 0 0 / 87%);
-    --background-color-0: #121212;
-    --background-color-1: #282828;
-    --background-color-2: #3f3f3f;
+    --background-color-0-hsl: 0 0% 7%;
+    --background-color-0: hsl(var(--background-color-0-hsl));
+    --background-color-1-hsl: 0 0% 16%;
+    --background-color-1: hsl(var(--background-color-1-hsl));
+    --background-color-2-hsl: 0 0% 25%;
+    --background-color-2: hsl(var(--background-color-2-hsl));
     --background-color-3: #575757;
     --background-color-4: #717171;
     --background-color-5: #8b8b8b;
