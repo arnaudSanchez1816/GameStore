@@ -1,6 +1,6 @@
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    background-color: var(--background-color-1);
+    background-color: var(--background-color-0);
     color: var(--text-color-light);
 
     --page-max-width: 1280px;
