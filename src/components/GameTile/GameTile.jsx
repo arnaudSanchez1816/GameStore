@@ -15,8 +15,16 @@ function GameTile({ game }) {
                 />
             </Link>
             <div className={style["details"]}>
-                <span className={style["name"]}>{name}</span>
-                <span className={style["price"]}>{price}</span>
+                <span className={style["name"]} aria-label={name} title={name}>
+                    {name}
+                </span>
+                <span
+                    className={style["price"]}
+                    aria-label={price}
+                    title={price}
+                >
+                    {price}
+                </span>
             </div>
         </div>
     )
