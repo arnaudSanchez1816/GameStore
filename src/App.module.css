@@ -1,8 +1,16 @@
 .app {
     width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "content"
+        "footer";
 }
 
 .content {
-    margin: 0 auto;
+    grid-area: content;
     background-color: var(--background-color-1);
 }

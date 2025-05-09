@@ -2,6 +2,15 @@ import { Outlet } from "react-router-dom"
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import style from "./App.module.css"
+import GlobalSpinner from "./components/GlobalSpinner/GlobalSpinner"
+
+export function AppFallback() {
+    return (
+        <div className={style["app"]}>
+            <GlobalSpinner />
+        </div>
+    )
+}
 
 function App() {
     return (
