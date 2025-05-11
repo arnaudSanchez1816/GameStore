@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom"
 import { getThumbnailLink } from "../../utils"
 import style from "./GameTile.module.css"
+import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 
 function GameTile({ game }) {
     const { name, background_image, price, id } = game
 
+    const priceString = `${price}€`
+
     return (
         <div className={style["game-tile"]}>
             <Link className={style["link"]} to={`/game/${id}`}>
-                <img
-                    className={style["image"]}
-                    src={getThumbnailLink(background_image)}
-                    alt={name}
-                />
+                {background_image ? (
+                    <img
+                        className={style["image"]}
+                        src={getThumbnailLink(background_image)}
+                        alt={name}
+                    />
+                ) : (
+                    <div className={style["no-image"]}>
+                        <Icon
+                            className={style["no-image-icon"]}
+                            icon="mdi:image-off-outline"
+                        />
+                    </div>
+                )}
             </Link>
             <div className={style["details"]}>
                 <span className={style["name"]} aria-label={name} title={name}>
@@ -20,10 +32,10 @@ function GameTile({ game }) {
                 </span>
                 <span
                     className={style["price"]}
-                    aria-label={price}
-                    title={price}
+                    aria-label={priceString}
+                    title={priceString}
                 >
-                    {price}
+                    {priceString}
                 </span>
             </div>
         </div>
