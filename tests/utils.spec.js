@@ -1,5 +1,5 @@
 import { test, expect, describe, vi } from "vitest"
-import { generatePriceString, getThumbnailLink } from "../src/utils"
+import { generateRandomPrice, getThumbnailLink } from "../src/utils"
 
 describe("Thumbnail links", () => {
     test("to be https://media.rawg.io/media/crop/600/400/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg", () => {
@@ -34,13 +34,13 @@ describe("Thumbnail links", () => {
 })
 
 describe("Price generation", () => {
-    test("0 to be 5€", () => {
-        expect(generatePriceString(0, 5, 1000)).toBe("5.00€")
+    test("0 to be 5", () => {
+        expect(generateRandomPrice(0, 5, 1000)).toBe("5.00")
     })
-    test("1 to be 54.99€", () => {
-        expect(generatePriceString(1, 5, 54.99)).toBe("54.99€")
+    test("1 to be 54.99", () => {
+        expect(generateRandomPrice(1, 5, 54.99)).toBe("54.99")
     })
-    test("0.5 to be 30.00€", () => {
-        expect(generatePriceString(0.5, 10, 50)).toBe("30.00€")
+    test("0.5 to be 30.00", () => {
+        expect(generateRandomPrice(0.5, 10, 50)).toBe("30.00")
     })
 })

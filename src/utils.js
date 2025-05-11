@@ -28,7 +28,7 @@ export function generateSeededRandom(seed) {
     return seededGenerator.quick()
 }
 
-export function generatePriceString(randomNumber, minPrice = 5, maxPrice = 70) {
-    const price = lerp(minPrice, maxPrice, randomNumber)
-    return `${price.toFixed(2)}€`
+export function generateRandomPrice(gameId, minPrice = 5, maxPrice = 70) {
+    const randomNb = generateSeededRandom(gameId)
+    return Number(lerp(minPrice, maxPrice, randomNb).toFixed(2))
 }

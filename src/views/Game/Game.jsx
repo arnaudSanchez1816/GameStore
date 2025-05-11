@@ -38,6 +38,8 @@ function Game() {
         )
     })
 
+    const priceString = `${game.price}€`
+
     return (
         <div className={style["game"]}>
             <div className={style["game-content"]}>
@@ -52,7 +54,7 @@ function Game() {
                     <div className={style["presentation-right"]}>
                         <h1 className={style["title"]}>{game.name}</h1>
                         <div className={style["pricing"]}>
-                            <p className={style["price"]}>{game.price}</p>
+                            <p className={style["price"]}>{priceString}</p>
                             <button
                                 className={style["add-to-cart"]}
                                 type="button"

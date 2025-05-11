@@ -17,7 +17,11 @@
 .hero,
 .details {
     composes: section;
-    padding: var(--section-padding);
+}
+
+.section + .section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .presentation {

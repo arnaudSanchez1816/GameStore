@@ -1,8 +1,37 @@
-import { generatePriceString, generateSeededRandom } from "../utils"
+import { generateRandomPrice } from "../utils"
 import { subDays, lastDayOfMonth, formatISO } from "date-fns"
 
 const RAWG_API_KEY = "809c6fd8d85848fb80022b89960016cc"
 const NSFW_TAG_ID = 312
+
+export const ORDERING_METHODS = {
+    rating_desc: { value: "rating_desc", name: "Rating: Best" },
+    rating_asc: { value: "rating_asc", name: "Rating: Worst" },
+    nameAsc: { value: "name_asc", name: "Name: A-Z" },
+    nameDesc: { value: "name_desc", name: "Name: Z-A" },
+}
+
+export const DEFAULT_ORDERING_METHOD = ORDERING_METHODS.rating_desc
+
+const API_ORDERING_PARAMS = [
+    {
+        name: ORDERING_METHODS.nameAsc.value,
+        apiName: "name",
+    },
+    {
+        name: ORDERING_METHODS.nameDesc.value,
+        apiName: "-name",
+    },
+    {
+        name: ORDERING_METHODS.rating_asc.value,
+        apiName: "rating",
+    },
+    {
+        name: ORDERING_METHODS.rating_desc.value,
+        apiName: "-rating",
+    },
+]
+
 export async function getLatestReleases(nbResults) {
     try {
         const urlSearchParams = new URLSearchParams()
@@ -120,6 +149,81 @@ export async function getGameScreenshots(gameId) {
     }
 }
 
+export async function queryForGames({
+    name,
+    genres = [],
+    tags = [],
+    minPrice = -1,
+    maxPrice = -1,
+    sortBy = DEFAULT_ORDERING_METHOD.value,
+    excludeDlc = true,
+    page = 1,
+}) {
+    try {
+        const params = new URLSearchParams()
+        params.append("key", RAWG_API_KEY)
+        if (name) {
+            params.append("name", name)
+        }
+
+        if (genres && genres.length > 0) {
+            params.append("genres", genres.join(","))
+        }
+        if (tags && tags.length > 0) {
+            params.append("tags", tags.join(","))
+        }
+        const apiOrderingIndex = API_ORDERING_PARAMS.findIndex(
+            (param) => param.name === sortBy
+        )
+        if (apiOrderingIndex >= 0) {
+            params.append(
+                "ordering",
+                API_ORDERING_PARAMS[apiOrderingIndex].apiName
+            )
+        }
+
+        if (excludeDlc) {
+            params.append("exclude_additions", excludeDlc)
+        }
+
+        if (page > 1) {
+            params.append("page", page)
+        }
+
+        const response = await fetch(`https://api.rawg.io/api/games?${params}`)
+
+        if (response.status >= 400) {
+            throw new Error(response.statusText)
+        }
+
+        const responseJson = await response.json()
+        const gamesWithPrices = generateGamePrices(responseJson.results)
+
+        let count = responseJson.count
+        let filteredGames = gamesWithPrices
+        // Filter prices
+        if (minPrice >= 0 || maxPrice >= 0) {
+            filteredGames = gamesWithPrices.filter((game) => {
+                console.log(game)
+
+                if (minPrice >= 0 && game.price < minPrice) {
+                    return false
+                }
+                if (maxPrice >= 0 && game.price > maxPrice) {
+                    return false
+                }
+
+                return true
+            })
+            count = `${filteredGames.length}${responseJson.next && "+"}`
+        }
+
+        return { ...responseJson, results: filteredGames, count }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 function getRequestedGames(json, nbGames) {
     const filteredGames = filterNSFWGames(json.results)
     const requestedGames = filteredGames.slice(
@@ -157,9 +261,4 @@ function generateGamePrices(games) {
 
 function addGamePriceToGame(game) {
     return { ...game, price: generateRandomPrice(game.id) }
-}
-
-function generateRandomPrice(gameId, minPrice = 5, maxPrice = 70) {
-    const randomNb = generateSeededRandom(gameId)
-    return generatePriceString(randomNb, minPrice, maxPrice)
 }

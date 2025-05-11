@@ -1,17 +1,13 @@
 .section {
     max-width: var(--page-max-width);
     width: 100%;
-    margin: 0 auto;
+    margin: 2rem auto;
 }
 
-.hero {
+.hero,
+.genres,
+.popular-games {
     composes: section;
-    padding: var(--section-padding);
-}
-
-.genres {
-    composes: section;
-    padding: var(--section-padding);
 }
 
 .genres-container {
@@ -42,7 +38,6 @@
 
 .popular-games {
     composes: section;
-    padding: var(--section-padding);
 }
 
 .popular-games-grid {
@@ -60,9 +55,11 @@
 
 .newsletter {
     background-color: var(--background-color-2);
+    padding: 2rem 0;
 
-    > .section {
-        padding: var(--section-padding);
+    & > .section {
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .newsletter-icon {

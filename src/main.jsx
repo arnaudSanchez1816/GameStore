@@ -13,7 +13,9 @@ import ErrorView from "./views/ErrorView/ErrorView.jsx"
 import Home from "./views/Home/Home.jsx"
 import { loader as indexLoader } from "./routes/index.js"
 import { loader as gameLoader } from "./routes/game.js"
+import { loader as gamesLoader } from "./routes/games.js"
 import Game from "./views/Game/Game.jsx"
+import Games from "./views/Games/Games.jsx"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -25,6 +27,7 @@ const router = createBrowserRouter(
         >
             <Route index element={<Home />} loader={indexLoader} />
             <Route path="game/:gameId" element={<Game />} loader={gameLoader} />
+            <Route path="games" element={<Games />} loader={gamesLoader} />
         </Route>
     )
 )

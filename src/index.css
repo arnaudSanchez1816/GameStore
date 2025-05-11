@@ -25,6 +25,7 @@
     --primary-color-5: #9ecaa9;
     --section-padding: 2rem 0;
     --border-radius-medium: 8px;
+    --border-radius-small: 5px;
 }
 
 a {
@@ -72,4 +73,60 @@ a.button:hover {
 a:visited,
 .button:visited {
     color: var(--text-color-light);
+}
+
+select {
+    border: 1px solid var(--background-color-3);
+    background-color: var(--background-color-1);
+    border-radius: var(--border-radius-medium);
+    color: var(--text-color-light);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="number"] {
+    border: 1px solid var(--background-color-3);
+    background-color: var(--background-color-1);
+    border-radius: var(--border-radius-medium);
+    padding: 0.5rem;
+    color: var(--text-color-light);
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--background-color-1);
+    margin: 0;
+    font: inherit;
+    color: var(--text-color-light);
+    width: 1em;
+    height: 1em;
+    border: 2px solid var(--text-color-light);
+    border-radius: var(--border-radius-small);
+    position: relative;
+    cursor: pointer;
+
+    &:checked {
+        border-color: var(--primary-color-1);
+        background-color: var(--primary-color-1);
+    }
+
+    &:checked::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        transform-origin: center;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        background-color: var(--text-color-light);
+    }
+
+    &:hover {
+        border-color: var(--primary-color-1);
+    }
+}
+
+label:has(+ input[type="checkbox"]),
+input[type="checkbox"] + label {
+    cursor: pointer;
 }
