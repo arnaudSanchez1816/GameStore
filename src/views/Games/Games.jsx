@@ -55,6 +55,9 @@ function Games() {
     const [selectedGenres, setSelectedGenres] = useState(
         searchParams.get("genres")?.split(",") || []
     )
+    const [selectedTags, setSelectedTags] = useState(
+        searchParams.get("tags")?.split(",") || []
+    )
     const [minPrice, setMinPrice] = useState(searchParams.get("minPrice") || "")
     const [debouncedMinPrice, setDebouncedMinPrice] = useState(minPrice)
     const [maxPrice, setMaxPrice] = useState(searchParams.get("maxPrice") || "")
@@ -72,6 +75,8 @@ function Games() {
         if (sortOrder) params.set("sortBy", sortOrder)
         if (selectedGenres && selectedGenres.length > 0)
             params.set("genres", selectedGenres.join(","))
+        if (selectedTags && selectedTags.length > 0)
+            params.set("tags", selectedTags.join(","))
         if (debouncedMinPrice) params.set("minPrice", debouncedMinPrice)
         if (debouncedMaxPrice) params.set("maxPrice", debouncedMaxPrice)
         if (searchQuery) params.set("q", searchQuery)
@@ -81,6 +86,7 @@ function Games() {
         searchQuery,
         sortOrder,
         selectedGenres,
+        selectedTags,
         debouncedMinPrice,
         debouncedMaxPrice,
         setSearchParams,

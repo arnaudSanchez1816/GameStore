@@ -83,7 +83,11 @@ function Game() {
                             <div className={style["genres"]}>
                                 {genres.length > 0 ? (
                                     genres.map((genre) => (
-                                        <Link className={style["genre"]} to="#">
+                                        <Link
+                                            className={style["genre"]}
+                                            to={`/games?genres=${genre.slug}`}
+                                            key={genre.id}
+                                        >
                                             {genre.name}
                                         </Link>
                                     ))
@@ -99,7 +103,11 @@ function Game() {
                             <div className={style["tags"]}>
                                 {tags.length > 0 ? (
                                     tags.map((tag) => (
-                                        <Link className={style["tag"]} to="#">
+                                        <Link
+                                            to={`/games?tags=${tag.slug}`}
+                                            className={style["tag"]}
+                                            key={tag.id}
+                                        >
                                             {tag.name}
                                         </Link>
                                     ))
