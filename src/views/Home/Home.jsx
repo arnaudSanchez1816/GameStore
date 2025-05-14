@@ -21,6 +21,23 @@ import {
 import clsx from "clsx"
 import HomeHeroCarouselItem from "../../components/HeroCarousel/HomeHeroCarouselItem"
 
+function GenreTile({ genre }) {
+    const { id, icon, name, slug } = genre
+    const searchParams = new URLSearchParams()
+    searchParams.set("genres", slug)
+
+    return (
+        <a
+            href={`/games?${searchParams}`}
+            className={clsx("button", style["genre-link"])}
+            key={id}
+        >
+            <span className={style["genre-name"]}>{name}</span>
+            <Icon className={style["genre-icon"]} icon={icon} />
+        </a>
+    )
+}
+
 function Home() {
     const { popularGames, latestRelease, highlightedGames } = useLoaderData()
 
@@ -57,19 +74,7 @@ function Home() {
                 <h2>Genres</h2>
                 <div className={style["genres-container"]}>
                     {genresList.map((genre) => (
-                        <a
-                            href="#"
-                            className={clsx("button", style["genre-link"])}
-                            key={genre.id}
-                        >
-                            <span className={style["genre-name"]}>
-                                {genre.name}
-                            </span>
-                            <Icon
-                                className={style["genre-icon"]}
-                                icon={genre.icon}
-                            />
-                        </a>
+                        <GenreTile genre={genre} key={genre.id} />
                     ))}
                 </div>
             </div>
