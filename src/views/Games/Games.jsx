@@ -63,7 +63,7 @@ function Games() {
 
     useEffect(() => {
         const params = new URLSearchParams(location.search)
-        pageRef.current = params.get("page") || ""
+        pageRef.current = params.get("page") || "1"
     }, [location.search])
 
     useEffect(() => {

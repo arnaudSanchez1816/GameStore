@@ -28,6 +28,7 @@ export async function loader({ request }) {
 
     const gamesFetch = queryForGames({
         ...searchParams,
+        name: searchParams.q,
         genres: searchParams.genres?.split(","),
         tags: searchParams.tags?.split(","),
     })

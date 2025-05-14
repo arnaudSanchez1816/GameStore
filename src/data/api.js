@@ -163,7 +163,7 @@ export async function queryForGames({
         const params = new URLSearchParams()
         params.append("key", RAWG_API_KEY)
         if (name) {
-            params.append("name", name)
+            params.append("search", name)
         }
 
         if (genres && genres.length > 0) {
@@ -175,7 +175,8 @@ export async function queryForGames({
         const apiOrderingIndex = API_ORDERING_PARAMS.findIndex(
             (param) => param.name === sortBy
         )
-        if (apiOrderingIndex >= 0) {
+        if (apiOrderingIndex >= 0 && name == false) {
+            // API search is terrible, ordering returns irrelevant results when looking for a name
             params.append(
                 "ordering",
                 API_ORDERING_PARAMS[apiOrderingIndex].apiName

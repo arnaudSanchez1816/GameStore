@@ -1,18 +1,32 @@
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 import style from "./Header.module.css"
-import { Form, Link } from "react-router-dom"
+import { Form, Link, useNavigation, useSearchParams } from "react-router-dom"
+import { useEffect, useRef } from "react"
 
 function Header() {
+    const searchInputRef = useRef(null)
+    const navigation = useNavigation()
+    const [searchParams] = useSearchParams()
+    const q = searchParams.get("q") || ""
+
+    useEffect(() => {
+        if (searchInputRef.current) {
+            searchInputRef.current.value = q
+        }
+    }, [navigation, q])
+
     return (
         <header className={style["header"]}>
             <Link className={style["app-logo"]} to="/" title="Home"></Link>
             <div className={style["search-bar-container"]}>
-                <Form>
+                <Form action="/games" method="GET">
                     <input
                         className={style["search-bar"]}
                         type="search"
                         name="q"
-                        defaultValue="Search bar"
+                        aria-label="Search games"
+                        defaultValue={q}
+                        ref={searchInputRef}
                     />
                     <Icon
                         className={style["search-icon"]}
