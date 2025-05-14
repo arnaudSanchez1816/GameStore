@@ -20,9 +20,7 @@ function Game() {
         return (
             <>
                 {index > 0 && <span className={style["comma"]}>, </span>}
-                <Link to="#" className="developer-link">
-                    {dev.name}
-                </Link>
+                <span className="developer-link">{dev.name}</span>
             </>
         )
     })
@@ -31,9 +29,7 @@ function Game() {
         return (
             <>
                 {index > 0 && <span className={style["comma"]}>, </span>}
-                <Link to="#" className="publisher-link">
-                    {pub.name}
-                </Link>
+                <span className="publisher-link">{pub.name}</span>
             </>
         )
     })
