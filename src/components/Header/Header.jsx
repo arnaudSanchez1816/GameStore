@@ -2,6 +2,7 @@ import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 import style from "./Header.module.css"
 import { Form, Link, useNavigation, useSearchParams } from "react-router-dom"
 import { useEffect, useRef } from "react"
+import ShoppingCartButton from "../ShoppingCartButton/ShoppingCartButton"
 
 function Header() {
     const searchInputRef = useRef(null)
@@ -35,9 +36,7 @@ function Header() {
                 </Form>
             </div>
             <div className={style["header-right"]}>
-                <Link className={style["cart-link"]} to="/cart/">
-                    <Icon icon="material-symbols:shopping-cart-outline" />
-                </Link>
+                <ShoppingCartButton />
                 <button className={style["user-btn"]} type="button">
                     <Icon icon="material-symbols:account-circle-outline" />
                 </button>

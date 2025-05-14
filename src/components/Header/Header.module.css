@@ -73,18 +73,3 @@
         color: var(--primary-color-1);
     }
 }
-
-.cart-link {
-    background-color: transparent;
-    border-radius: 50%;
-    font-size: 34px;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-        background-color: transparent;
-        color: var(--primary-color-1);
-    }
-}

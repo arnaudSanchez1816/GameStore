@@ -16,6 +16,7 @@ import { loader as gameLoader } from "./routes/game.js"
 import { loader as gamesLoader } from "./routes/games.js"
 import Game from "./views/Game/Game.jsx"
 import Games from "./views/Games/Games.jsx"
+import ShoppingCart from "./views/ShoppingCart/ShoppingCart.jsx"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
             <Route index element={<Home />} loader={indexLoader} />
             <Route path="game/:gameId" element={<Game />} loader={gameLoader} />
             <Route path="games" element={<Games />} loader={gamesLoader} />
+            <Route path="cart" element={<ShoppingCart />} />
         </Route>
     )
 )
