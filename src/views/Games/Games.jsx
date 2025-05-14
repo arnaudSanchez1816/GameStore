@@ -51,7 +51,6 @@ function Games() {
 
     const pageRef = useRef(searchParams.get("page"))
 
-    const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "")
     const [sortOrder, setSortOrder] = useState(searchParams.get("sortBy") || "")
     const [selectedGenres, setSelectedGenres] = useState(
         searchParams.get("genres")?.split(",") || []
@@ -60,6 +59,7 @@ function Games() {
     const [debouncedMinPrice, setDebouncedMinPrice] = useState(minPrice)
     const [maxPrice, setMaxPrice] = useState(searchParams.get("maxPrice") || "")
     const [debouncedMaxPrice, setDebouncedMaxPrice] = useState(maxPrice)
+    const searchQuery = searchParams.get("q") || ""
 
     useEffect(() => {
         const params = new URLSearchParams(location.search)
