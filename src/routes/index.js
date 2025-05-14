@@ -1,10 +1,10 @@
 import { getBestOfYear, getLatestReleases, getPopularGames } from "../data/api"
 
-export async function loader() {
+export async function loader({ request }) {
     const [latestReleases, popularGames, bestOfYear] = await Promise.all([
-        getLatestReleases(12),
-        getPopularGames(24),
-        getBestOfYear(10),
+        getLatestReleases(12, request.signal),
+        getPopularGames(24, request.signal),
+        getBestOfYear(10, request.signal),
     ])
 
     return {

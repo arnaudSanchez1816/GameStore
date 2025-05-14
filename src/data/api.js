@@ -32,7 +32,7 @@ const API_ORDERING_PARAMS = [
     },
 ]
 
-export async function getLatestReleases(nbResults) {
+export async function getLatestReleases(nbResults, signal = null) {
     try {
         const urlSearchParams = new URLSearchParams()
         urlSearchParams.append("key", RAWG_API_KEY)
@@ -51,7 +51,8 @@ export async function getLatestReleases(nbResults) {
         )
 
         const response = await fetch(
-            `https://api.rawg.io/api/games?${urlSearchParams}`
+            `https://api.rawg.io/api/games?${urlSearchParams}`,
+            { signal }
         )
 
         if (response.status >= 400) {
@@ -65,14 +66,15 @@ export async function getLatestReleases(nbResults) {
     }
 }
 
-export async function getPopularGames(nbResults) {
+export async function getPopularGames(nbResults, signal = null) {
     try {
         const urlSearchParams = new URLSearchParams()
         urlSearchParams.append("key", RAWG_API_KEY)
         urlSearchParams.append("page_size", 50)
 
         const response = await fetch(
-            `https://api.rawg.io/api/games/lists/popular?${urlSearchParams}`
+            `https://api.rawg.io/api/games/lists/popular?${urlSearchParams}`,
+            { signal }
         )
 
         if (response.status >= 400) {
@@ -86,7 +88,7 @@ export async function getPopularGames(nbResults) {
     }
 }
 
-export async function getBestOfYear(nbResults) {
+export async function getBestOfYear(nbResults, signal = null) {
     try {
         const urlSearchParams = new URLSearchParams()
         urlSearchParams.append("key", RAWG_API_KEY)
@@ -94,7 +96,8 @@ export async function getBestOfYear(nbResults) {
         urlSearchParams.append("ordering", "-added")
 
         const response = await fetch(
-            `https://rawg.io/api/games/lists/greatest?${urlSearchParams}`
+            `https://rawg.io/api/games/lists/greatest?${urlSearchParams}`,
+            { signal }
         )
 
         if (response.status >= 400) {
@@ -108,13 +111,14 @@ export async function getBestOfYear(nbResults) {
     }
 }
 
-export async function getGameDetails(gameId) {
+export async function getGameDetails(gameId, signal = null) {
     try {
         const params = new URLSearchParams()
         params.append("key", RAWG_API_KEY)
 
         const response = await fetch(
-            `https://api.rawg.io/api/games/${gameId}?${params}`
+            `https://api.rawg.io/api/games/${gameId}?${params}`,
+            { signal }
         )
 
         if (response.status >= 400) {
@@ -128,14 +132,15 @@ export async function getGameDetails(gameId) {
     }
 }
 
-export async function getGameScreenshots(gameId) {
+export async function getGameScreenshots(gameId, signal = null) {
     try {
         const params = new URLSearchParams()
         params.append("key", RAWG_API_KEY)
         params.append("page_size", 8)
 
         const response = await fetch(
-            `https://api.rawg.io/api/games/${gameId}/screenshots?${params}`
+            `https://api.rawg.io/api/games/${gameId}/screenshots?${params}`,
+            { signal }
         )
 
         if (response.status >= 400) {
@@ -149,16 +154,19 @@ export async function getGameScreenshots(gameId) {
     }
 }
 
-export async function queryForGames({
-    name,
-    genres = [],
-    tags = [],
-    minPrice = -1,
-    maxPrice = -1,
-    sortBy = DEFAULT_ORDERING_METHOD.value,
-    excludeDlc = true,
-    page = 1,
-}) {
+export async function queryForGames(
+    {
+        name,
+        genres = [],
+        tags = [],
+        minPrice = -1,
+        maxPrice = -1,
+        sortBy = DEFAULT_ORDERING_METHOD.value,
+        excludeDlc = true,
+        page = 1,
+    },
+    signal = null
+) {
     try {
         const params = new URLSearchParams()
         params.append("key", RAWG_API_KEY)
@@ -191,7 +199,10 @@ export async function queryForGames({
             params.append("page", page)
         }
 
-        const response = await fetch(`https://api.rawg.io/api/games?${params}`)
+        const response = await fetch(
+            `https://api.rawg.io/api/games?${params}`,
+            { signal }
+        )
 
         if (response.status >= 400) {
             throw new Error(response.statusText)
