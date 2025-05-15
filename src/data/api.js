@@ -183,7 +183,7 @@ export async function queryForGames(
         const apiOrderingIndex = API_ORDERING_PARAMS.findIndex(
             (param) => param.name === sortBy
         )
-        if (apiOrderingIndex >= 0 && name == false) {
+        if (apiOrderingIndex >= 0 && !name) {
             // API search is terrible, ordering returns irrelevant results when looking for a name
             params.append(
                 "ordering",
