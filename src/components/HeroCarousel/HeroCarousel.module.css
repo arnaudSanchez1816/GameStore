@@ -33,7 +33,7 @@
     pointer-events: none;
 }
 
-.row-item.active {
+.row-item:global(.active) {
     opacity: 1;
     pointer-events: auto;
 }

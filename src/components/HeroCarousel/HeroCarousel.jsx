@@ -139,7 +139,7 @@ function HeroCarousel({ children, options = HERO_CAROUSEL_DEFAULT }) {
                             <li
                                 className={clsx(
                                     style["row-item"],
-                                    isActive && style["active"]
+                                    isActive && "active"
                                 )}
                                 key={mapIndex}
                             >
