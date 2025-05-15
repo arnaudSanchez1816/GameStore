@@ -1,15 +1,16 @@
-import { Outlet, ScrollRestoration } from "react-router-dom"
+import { Outlet, ScrollRestoration, useNavigation } from "react-router-dom"
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import style from "./App.module.css"
 import GlobalSpinner from "./components/GlobalSpinner/GlobalSpinner"
 import { useState } from "react"
 import { ShoppingCartContext } from "./contexts/ShoppingCartContext"
+import Loading from "./views/Loading/Loading"
 
 export function AppFallback() {
     return (
         <div className={style["app"]}>
-            <GlobalSpinner />
+            <Loading />
         </div>
     )
 }
@@ -19,6 +20,8 @@ function App() {
         { id: 250, count: 1 },
         { id: 5000, count: 2 },
     ])
+    const navigation = useNavigation()
+    const isLoading = navigation.state === "loading"
 
     return (
         <>
@@ -27,7 +30,7 @@ function App() {
                 <ShoppingCartContext.Provider value={[cartData, setCartData]}>
                     <Header />
                     <div className={style["content"]}>
-                        <Outlet />
+                        {isLoading ? <GlobalSpinner /> : <Outlet />}
                     </div>
                     <Footer />
                 </ShoppingCartContext.Provider>
