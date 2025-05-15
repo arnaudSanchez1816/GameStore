@@ -4,6 +4,8 @@ import { subDays, lastDayOfMonth, formatISO } from "date-fns"
 const RAWG_API_KEY = "809c6fd8d85848fb80022b89960016cc"
 const NSFW_TAG_ID = 312
 
+const game_details_cache = new Map()
+
 export const ORDERING_METHODS = {
     rating_desc: { value: "rating_desc", name: "Rating: Best" },
     rating_asc: { value: "rating_asc", name: "Rating: Worst" },
@@ -62,6 +64,7 @@ export async function getLatestReleases(nbResults, signal = null) {
         const json = await response.json()
         return getRequestedGames(json, nbResults)
     } catch (error) {
+        if (error.name === "AbortError") return
         console.error(error)
     }
 }
@@ -84,6 +87,7 @@ export async function getPopularGames(nbResults, signal = null) {
         const json = await response.json()
         return getRequestedGames(json, nbResults)
     } catch (error) {
+        if (error.name === "AbortError") return
         console.error(error)
     }
 }
@@ -107,11 +111,16 @@ export async function getBestOfYear(nbResults, signal = null) {
         const json = await response.json()
         return getRequestedGames(json, nbResults)
     } catch (error) {
+        if (error.name === "AbortError") return
         console.error(error)
     }
 }
 
 export async function getGameDetails(gameId, signal = null) {
+    if (game_details_cache.has(gameId)) {
+        return game_details_cache.get(gameId)
+    }
+
     try {
         const params = new URLSearchParams()
         params.append("key", RAWG_API_KEY)
@@ -126,8 +135,12 @@ export async function getGameDetails(gameId, signal = null) {
         }
 
         const gameJson = await response.json()
-        return addGamePriceToGame(gameJson)
+        const gameDetails = addGamePriceToGame(gameJson)
+
+        game_details_cache.set(gameId, gameDetails)
+        return gameDetails
     } catch (error) {
+        if (error.name === "AbortError") return
         console.error(error)
     }
 }
@@ -150,6 +163,7 @@ export async function getGameScreenshots(gameId, signal = null) {
         const screenshotsJson = await response.json()
         return screenshotsJson.results
     } catch (error) {
+        if (error.name === "AbortError") return
         console.error(error)
     }
 }
