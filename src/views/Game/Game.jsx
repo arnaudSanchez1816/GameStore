@@ -5,6 +5,7 @@ import style from "./Game.module.css"
 import { format } from "date-fns"
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 import { getThumbnailLink } from "../../utils"
+import AddToCartButton from "../../components/AddToCartButton/AddToCartButton"
 
 function Game() {
     const { game, screenshots } = useLoaderData()
@@ -51,16 +52,7 @@ function Game() {
                         <h1 className={style["title"]}>{game.name}</h1>
                         <div className={style["pricing"]}>
                             <p className={style["price"]}>{priceString}</p>
-                            <button
-                                className={style["add-to-cart"]}
-                                type="button"
-                            >
-                                <Icon
-                                    className={style["cart-icon"]}
-                                    icon="material-symbols:shopping-cart-outline"
-                                />
-                                Add to cart
-                            </button>
+                            <AddToCartButton gameId={game.id} />
                         </div>
                     </div>
                 </div>
