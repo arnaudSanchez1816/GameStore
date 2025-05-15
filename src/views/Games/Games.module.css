@@ -127,12 +127,6 @@
     > .price-input {
         flex: 1;
         width: 0;
-        -moz-appearance: textfield;
-
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-            display: none;
-        }
     }
 }
 

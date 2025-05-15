@@ -7,7 +7,7 @@ import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 function ShoppingCartButton() {
     const [cartData] = useContext(ShoppingCartContext)
 
-    const { items } = cartData
+    const nbItems = cartData.reduce((prev, curr) => prev + curr.count, 0)
 
     return (
         <Link className={style["cart-link"]} to="/cart/">
@@ -15,8 +15,8 @@ function ShoppingCartButton() {
                 className={style["cart-icon"]}
                 icon="material-symbols:shopping-cart-outline"
             />
-            {items.length > 0 && (
-                <div className={style["cart-count"]}>{items.length}</div>
+            {cartData.length > 0 && (
+                <div className={style["cart-count"]}>{nbItems}</div>
             )}
         </Link>
     )

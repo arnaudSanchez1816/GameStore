@@ -15,7 +15,10 @@ export function AppFallback() {
 }
 
 function App() {
-    const [cartData, setCartData] = useState({ items: [] })
+    const [cartData, setCartData] = useState([
+        { id: 250, count: 1 },
+        { id: 5000, count: 2 },
+    ])
 
     return (
         <>

@@ -3,6 +3,7 @@ import style from "./Header.module.css"
 import { Form, Link, useNavigation, useSearchParams } from "react-router-dom"
 import { useEffect, useRef } from "react"
 import ShoppingCartButton from "../ShoppingCartButton/ShoppingCartButton"
+import clsx from "clsx"
 
 function Header() {
     const searchInputRef = useRef(null)
@@ -37,7 +38,10 @@ function Header() {
             </div>
             <div className={style["header-right"]}>
                 <ShoppingCartButton />
-                <button className={style["user-btn"]} type="button">
+                <button
+                    className={clsx("link", style["user-btn"])}
+                    type="button"
+                >
                     <Icon icon="material-symbols:account-circle-outline" />
                 </button>
             </div>
