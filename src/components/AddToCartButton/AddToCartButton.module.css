@@ -1,0 +1,10 @@
+.add-to-cart {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+
+    & > .cart-icon {
+        font-size: 28px;
+    }
+}
