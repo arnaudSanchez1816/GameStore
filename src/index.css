@@ -28,7 +28,8 @@
     --border-radius-small: 5px;
     --header-height: 85px;
     --icon-font-size-large: 2rem;
-    --icon-font-size-medium: 1rem;
+    --icon-font-size-medium: 1.5rem;
+    --icon-font-size-small: 1rem;
 }
 
 body {
@@ -172,7 +173,11 @@ input[type="checkbox"] + label {
 
 @media (width<= 800px) {
     :root {
-        --icon-font-size-large: 1.5rem;
+        /* --icon-font-size-large: 1.5rem; */
         --section-padding: 2rem 0;
+    }
+
+    body {
+        font-size: 13px;
     }
 }
