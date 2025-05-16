@@ -1,6 +1,5 @@
 .section {
     max-width: var(--page-max-width);
-    width: 100%;
     margin: 2rem auto;
 }
 
@@ -19,21 +18,24 @@
 
 .genre-link {
     position: relative;
+    display: flex !important;
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+}
 
-    .genre-name {
-        font-size: 1.2rem;
-        position: absolute;
-        left: 1rem;
-        bottom: 0.5rem;
-    }
+.genre-name {
+    font-size: 1.2rem;
+    left: 1rem;
+    bottom: 0.5rem;
+    align-self: flex-end;
+}
 
-    .genre-icon {
-        position: absolute;
-        right: 0.5rem;
-        top: 0.5rem;
-        font-size: 2rem;
-        color: var(--text-color-light-medium);
-    }
+.genre-icon {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    font-size: var(--icon-font-size-large);
+    color: var(--text-color-light-medium);
 }
 
 .popular-games {
@@ -42,7 +44,7 @@
 
 .popular-games-grid {
     display: grid;
-    grid-template-columns: repeat(4, 302px);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
 }
 
@@ -104,13 +106,32 @@
         gap: 0.5rem;
     }
 
+    .genres-container {
+        grid-auto-rows: auto;
+    }
+
+    .genre-link {
+        padding: 0.5rem;
+    }
+
+    .genre-name {
+        font-size: 1rem;
+        align-self: center;
+    }
+
+    .genre-icon {
+        position: static;
+        font-size: var(--icon-font-size-medium);
+    }
+
     .newsletter-text {
         text-align: center;
     }
 }
 
 @media (width > 800px) and (width <= 1400px) {
-    .hero {
+    .hero,
+    .genres {
         padding: 0 2rem;
     }
 }
