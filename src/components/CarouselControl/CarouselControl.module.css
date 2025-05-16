@@ -1,7 +1,4 @@
 .controls {
-    position: absolute;
-    top: 0;
-    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,16 +6,16 @@
 
 .controls-left {
     composes: controls;
-    left: -45px;
+    grid-area: left;
 }
 
 .controls-right {
     composes: controls;
-    right: -45px;
+    grid-area: right;
 }
 
 .controls-btn {
-    font-size: 32px;
+    font-size: var(--icon-font-size-large);
     padding: 4px;
     border: none;
     background-color: #1a1a1a;
@@ -28,5 +25,11 @@
 
     &:hover {
         background-color: #3a3a3a;
+    }
+}
+
+@media (width<= 800px) {
+    .controls {
+        display: none;
     }
 }
