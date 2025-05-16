@@ -48,6 +48,10 @@
     gap: 1.5rem;
 }
 
+.popular-game-item {
+    min-width: 200px;
+}
+
 .popular-games > .all-games-link {
     display: block;
     margin: 0 auto;
@@ -107,12 +111,8 @@
         padding: 0.5rem;
     }
 
-    .popular-game-item {
-        width: 100%;
-    }
-
     .genres-container {
-        grid-template-columns: repeat(2, minmax(min-content, 30%));
+        grid-template-columns: repeat(2, minmax(120px, 30%));
         justify-content: center;
         gap: 0.5rem;
         grid-auto-rows: 40px;
