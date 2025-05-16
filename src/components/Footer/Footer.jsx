@@ -100,7 +100,7 @@ function Footer() {
                         href="https://github.com/arnaudSanchez1816/shopping-cart"
                     >
                         <Icon
-                            className={style["icon"]}
+                            className={style["icon-gh"]}
                             icon="simple-icons:github"
                         />
                         <span>Mock game store</span>

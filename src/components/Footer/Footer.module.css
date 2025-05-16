@@ -41,6 +41,10 @@
     font-size: var(--icon-font-size-large);
 }
 
+.icon-gh {
+    font-size: var(--icon-font-size-medium);
+}
+
 .footer-link {
     color: var(--text-color-light);
     text-decoration: none;
