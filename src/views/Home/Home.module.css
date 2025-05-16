@@ -95,19 +95,28 @@
     }
 }
 
-@media (width <= 800px) {
+@media (width <= 1000px) {
     .section {
         margin: 2rem;
     }
 
-    .genres-container,
     .popular-games-grid {
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        overflow: scroll;
         gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .popular-game-item {
+        width: 100%;
     }
 
     .genres-container {
-        grid-auto-rows: auto;
+        grid-template-columns: repeat(2, minmax(min-content, 30%));
+        justify-content: center;
+        gap: 0.5rem;
+        grid-auto-rows: 40px;
+        width: 100%;
     }
 
     .genre-link {
@@ -129,9 +138,10 @@
     }
 }
 
-@media (width > 800px) and (width <= 1400px) {
+@media (width > 1000px) and (width <= 1400px) {
     .hero,
-    .genres {
+    .genres,
+    .popular-games {
         padding: 0 2rem;
     }
 }
