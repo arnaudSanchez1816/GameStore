@@ -173,5 +173,6 @@ input[type="checkbox"] + label {
 @media (width<= 800px) {
     :root {
         --icon-font-size-large: 1.5rem;
+        --section-padding: 2rem 0;
     }
 }
