@@ -27,6 +27,8 @@
     --border-radius-medium: 8px;
     --border-radius-small: 5px;
     --header-height: 85px;
+    --icon-font-size-large: 2rem;
+    --icon-font-size-medium: 1rem;
 }
 
 body {
@@ -166,4 +168,10 @@ input[type="checkbox"] {
 label:has(+ input[type="checkbox"]),
 input[type="checkbox"] + label {
     cursor: pointer;
+}
+
+@media (width<= 800px) {
+    :root {
+        --icon-font-size-large: 1.5rem;
+    }
 }

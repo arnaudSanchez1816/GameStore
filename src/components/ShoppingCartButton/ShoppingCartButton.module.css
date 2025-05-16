@@ -9,7 +9,7 @@
 }
 
 .cart-icon {
-    font-size: 34px;
+    font-size: var(--icon-font-size-large);
 }
 
 .cart-link:hover > .cart-icon {
@@ -24,7 +24,7 @@
     top: -12px;
     right: 6px;
     margin-right: -6px;
-    font-size: 18px;
+    font-size: 1.3rem;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -33,4 +33,14 @@
 
 .cart-link:hover > .cart-count {
     color: var(--text-color-light);
+}
+
+@media (width <= 800px) {
+    .cart-count {
+        font-size: 1rem;
+        width: 20px;
+        height: 20px;
+        top: -10px;
+        right: 5px;
+    }
 }
