@@ -12,25 +12,23 @@
 .links {
     display: grid;
     justify-content: space-between;
-    justify-items: center;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
 
-    & > .info {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: min-content;
-        gap: 0.5rem 1rem;
-        justify-items: center;
-    }
+.info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: min-content;
+    gap: 0.5rem 1rem;
+    align-content: center;
 }
 
 .socials {
-    justify-self: flex-end;
-
-    & > .icons {
-        display: flex;
-        gap: 0.5rem;
-    }
+    display: flex;
+    justify-self: stretch;
+    justify-content: flex-end;
+    gap: 1rem;
 }
 
 .logo {
@@ -40,7 +38,7 @@
 }
 
 .icon {
-    font-size: 34px;
+    font-size: var(--icon-font-size-large);
 }
 
 .footer-link {
@@ -74,6 +72,11 @@
 
 .info-link {
     composes: footer-link;
+    justify-self: flex-end;
+}
+
+.info-link:nth-child(even) {
+    justify-self: flex-start;
 }
 
 .legals {
@@ -87,4 +90,28 @@
 
 .legals-content {
     margin: 0;
+}
+
+@media (width <= 800px) {
+    .links {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto);
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .socials {
+        justify-content: center;
+        gap: 0.5rem;
+        border-top: 1px solid var(--background-color-2);
+        padding-top: 1rem;
+    }
+
+    .legals {
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
 }
