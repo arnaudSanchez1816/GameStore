@@ -9,7 +9,7 @@
     height: 600px;
     display: grid;
     grid-template-columns: 40px 1fr 40px;
-    grid-template-areas: "left image right";
+    grid-template-areas: "left carousel right";
     gap: 1rem;
 }
 
@@ -20,7 +20,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    grid-area: image;
+    grid-area: carousel;
 }
 
 .row-item {
