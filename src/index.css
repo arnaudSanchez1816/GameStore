@@ -42,7 +42,7 @@ button,
     border-radius: var(--border-radius-medium);
     border: none;
     padding: 0.6em 1.2em;
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: 500;
     font-family: inherit;
     background-color: var(--primary-color-0);
@@ -171,13 +171,13 @@ input[type="checkbox"] + label {
     cursor: pointer;
 }
 
-@media (width<= 800px) {
+@media (width<= 1000px) {
     :root {
         /* --icon-font-size-large: 1.5rem; */
         --section-padding: 2rem 0;
     }
 
-    body {
+    html {
         font-size: 13px;
     }
 }
