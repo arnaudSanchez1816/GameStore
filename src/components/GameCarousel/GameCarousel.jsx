@@ -9,10 +9,10 @@ import GameTile from "../GameTile/GameTile"
 function GameCarousel({ items }) {
     const [containerScrollLeft, setContainerScrollLeft] = useState(0)
     const [maxScrollLeft, setMaxScrollLeft] = useState(0)
-    const containerRef = useRef(null)
+    const viewportRef = useRef(null)
 
     useEffect(() => {
-        const container = containerRef.current
+        const container = viewportRef.current
 
         const onScroll = (e) => {
             setContainerScrollLeft(e.target.scrollLeft)
@@ -32,6 +32,7 @@ function GameCarousel({ items }) {
             setContainerScrollLeft(container.scrollLeft)
             const scrollWidth = container.scrollWidth
             const clientWidth = container.clientWidth
+
             setMaxScrollLeft(scrollWidth - clientWidth)
         }
 
@@ -42,22 +43,24 @@ function GameCarousel({ items }) {
     }, [])
 
     const onLeftControls = () => {
-        const clientWidth = containerRef.current.clientWidth
+        const clientWidth = viewportRef.current.clientWidth
         const newScrollValue = Math.max(0, containerScrollLeft - clientWidth)
-        containerRef.current.scroll({
+        viewportRef.current.scroll({
             left: newScrollValue,
             behavior: "auto",
         })
     }
 
     const onRightControls = () => {
-        const scrollWidth = containerRef.current.scrollWidth
-        const clientWidth = containerRef.current.clientWidth
+        const scrollWidth = viewportRef.current.scrollWidth
+        const clientWidth = viewportRef.current.clientWidth
         const newScrollValue = Math.min(
             scrollWidth - clientWidth,
             containerScrollLeft + clientWidth
         )
-        containerRef.current.scroll({
+        console.log(scrollWidth)
+        console.log(clientWidth)
+        viewportRef.current.scroll({
             left: newScrollValue,
             behavior: "auto",
         })
@@ -65,14 +68,16 @@ function GameCarousel({ items }) {
 
     return (
         <div className={style["game-carousel"]}>
-            <div className={style["container"]} ref={containerRef}>
-                <ol className={style["list"]}>
-                    {items.map((item, mapIndex) => (
-                        <li key={mapIndex} className={style["item"]}>
-                            <GameTile game={item} />
-                        </li>
-                    ))}
-                </ol>
+            <div className={style["viewport"]} ref={viewportRef}>
+                <div className={style["container"]}>
+                    <ol className={style["list"]}>
+                        {items.map((item, mapIndex) => (
+                            <li key={mapIndex} className={style["item"]}>
+                                <GameTile game={item} />
+                            </li>
+                        ))}
+                    </ol>
+                </div>
             </div>
             {containerScrollLeft > 0 && (
                 <CarouselControlLeft onControlClick={onLeftControls} />

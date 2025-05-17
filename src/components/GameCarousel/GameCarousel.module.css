@@ -1,24 +1,51 @@
 .game-carousel {
     position: relative;
+    display: grid;
+    grid-template-columns: 40px calc(100% - 80px) 40px;
+    grid-template-areas: "left carousel right";
+}
+
+.viewport {
+    grid-area: carousel;
+    width: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 
 .container {
-    overflow: auto;
-    padding: 0.5rem 0;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
+    padding: 0.5rem;
 }
 
 .list {
     list-style: none;
     display: flex;
-    flex-flow: row nowrap;
     gap: 1.5rem;
-    padding: 0 0.5rem;
+    padding: 0;
     margin: 0;
     width: fit-content;
 }
 
 .item {
-    width: 100%;
+    min-width: 200px;
+    flex: 1;
+
+    & > * {
+        height: 100%;
+    }
+}
+
+@media (width <= 800px) {
+    .game-carousel {
+        display: flex;
+    }
+
+    .list {
+        gap: 0.5rem;
+        width: auto;
+    }
+
+    .viewport {
+        scrollbar-width: auto;
+    }
 }
