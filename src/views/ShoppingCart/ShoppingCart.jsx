@@ -48,12 +48,13 @@ function ShoppingCartItem({ shoppingItem, gameDetails }) {
                 <select
                     className={style["item-amount"]}
                     name="amount"
+                    value={count}
                     onChange={onAmountValueChanged}
                 >
                     {[...Array(10)].map((_, index) => {
                         const amount = index + 1
                         return (
-                            <option value={amount} selected={count === amount}>
+                            <option value={amount} key={index}>
                                 {amount}
                             </option>
                         )
