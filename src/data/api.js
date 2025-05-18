@@ -44,7 +44,7 @@ export async function getLatestReleases(nbResults, signal = null) {
     try {
         await rawgApiLimiter.removeTokens(1)
 
-        if (signal.aborted) {
+        if (signal && signal.aborted) {
             return
         }
 
@@ -85,7 +85,7 @@ export async function getPopularGames(nbResults, signal = null) {
     try {
         await rawgApiLimiter.removeTokens(1)
 
-        if (signal.aborted) {
+        if (signal && signal.aborted) {
             return
         }
 
@@ -114,7 +114,7 @@ export async function getBestOfYear(nbResults, signal = null) {
     try {
         await rawgApiLimiter.removeTokens(1)
 
-        if (signal.aborted) {
+        if (signal && signal.aborted) {
             return
         }
 
@@ -148,7 +148,7 @@ export async function getGameDetails(gameId, signal = null) {
     try {
         await rawgApiLimiter.removeTokens(1)
 
-        if (signal.aborted) {
+        if (signal && signal.aborted) {
             return
         }
 
@@ -179,7 +179,7 @@ export async function getGameScreenshots(gameId, signal = null) {
     try {
         await rawgApiLimiter.removeTokens(1)
 
-        if (signal.aborted) {
+        if (signal && signal.aborted) {
             return
         }
 
@@ -220,7 +220,7 @@ export async function queryForGames(
     try {
         await rawgApiLimiter.removeTokens(1)
 
-        if (signal.aborted) {
+        if (signal && signal.aborted) {
             return
         }
 
