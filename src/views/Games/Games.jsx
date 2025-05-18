@@ -59,6 +59,8 @@ function Games() {
     const [minPrice, setMinPrice] = useState(urlMinPrice)
     const [maxPrice, setMaxPrice] = useState(urlMaxPrice)
 
+    const [sidebarDisplayed, setSidebarDisplayed] = useState(false)
+
     const onMinPriceChanged = useMemo(
         () =>
             debounce((value) => {
@@ -144,115 +146,139 @@ function Games() {
 
     return (
         <div className={style["games"]}>
-            <aside className={style["sidebar"]}>
-                <div className={style["search-filters"]}>
-                    <div className={style["filter-sort"]}>
-                        <label className={style["filter-title"]} htmlFor="sort">
-                            Sort by:
-                        </label>
-                        <select
-                            name="sortBy"
-                            id="sort"
-                            onChange={(e) => {
-                                setSearchParams((prevParams) => {
-                                    const newParams = new URLSearchParams(
-                                        prevParams
-                                    )
-                                    newParams.set("page", "1")
-                                    newParams.set("sortBy", e.target.value)
-                                    return newParams
-                                })
-                            }}
-                            value={
-                                sortOrder
-                                    ? sortOrder
-                                    : DEFAULT_ORDERING_METHOD.value
-                            }
-                        >
-                            {Object.entries(ORDERING_METHODS).map(
-                                (orderingMethod) => (
-                                    <option
-                                        key={orderingMethod[1].value}
-                                        value={orderingMethod[1].value}
-                                    >
-                                        {orderingMethod[1].name}
-                                    </option>
-                                )
-                            )}
-                        </select>
-                    </div>
-                    <fieldset className={style["filter-prices"]}>
-                        <legend className={style["filter-title"]}>
-                            Filter by Price:
-                        </legend>
-                        <div className={style["filter-prices-inputs"]}>
-                            <input
-                                className={style["price-input"]}
-                                type="number"
-                                name="minPrice"
-                                id="min-price"
-                                placeholder="Min"
-                                value={minPrice}
-                                onChange={(e) => {
-                                    setMinPrice(e.target.value)
-                                    onMinPriceChanged(e.target.value)
-                                }}
-                            />
-                            <span>-</span>
-                            <input
-                                className={style["price-input"]}
-                                type="number"
-                                name="maxPrice"
-                                id="max-price"
-                                placeholder="Max"
-                                defaultValue={maxPrice}
-                                onChange={(e) => {
-                                    setMaxPrice(e.target.value)
-                                    onMaxPriceChanged(e.target.value)
-                                }}
-                            />
-                        </div>
-                    </fieldset>
-                    <fieldset className={style["filter-genres"]}>
-                        <legend className={style["filter-title"]}>
-                            Filter by Genre:
-                        </legend>
-                        <div className={style["genres"]}>
-                            {genres.map((genre) => (
-                                <GenreInput
-                                    key={genre.id}
-                                    genre={genre}
-                                    checked={selectedGenres.includes(
-                                        genre.slug
-                                    )}
-                                    onChange={onGenreChecked}
-                                />
-                            ))}
-                        </div>
-                        {selectedGenres.length > 0 && (
-                            <button
-                                className={style["clear-genres"]}
-                                type="button"
-                                onClick={() => {
-                                    setSearchParams(
-                                        (prevParams) => {
-                                            const newParams =
-                                                new URLSearchParams(prevParams)
-                                            newParams.set("page", "1")
-                                            newParams.delete("genres")
-                                            return newParams
-                                        },
-                                        { replace: true }
-                                    )
-                                }}
+            <div className={style["sidebar-container"]}>
+                <button
+                    className={style["sidebar-toggle"]}
+                    type="button"
+                    onClick={() => setSidebarDisplayed(!sidebarDisplayed)}
+                >
+                    Filters
+                </button>
+                <aside
+                    className={clsx(
+                        style["sidebar"],
+                        sidebarDisplayed && style["active"]
+                    )}
+                >
+                    <div className={style["search-filters"]}>
+                        <div className={style["filter-sort"]}>
+                            <label
+                                className={style["filter-title"]}
+                                htmlFor="sort"
                             >
-                                Clear genres
-                            </button>
-                        )}
-                    </fieldset>
-                </div>
-            </aside>
-            <main className={style["games-content"]}>
+                                Sort by:
+                            </label>
+                            <select
+                                name="sortBy"
+                                id="sort"
+                                onChange={(e) => {
+                                    setSearchParams((prevParams) => {
+                                        const newParams = new URLSearchParams(
+                                            prevParams
+                                        )
+                                        newParams.set("page", "1")
+                                        newParams.set("sortBy", e.target.value)
+                                        return newParams
+                                    })
+                                }}
+                                value={
+                                    sortOrder
+                                        ? sortOrder
+                                        : DEFAULT_ORDERING_METHOD.value
+                                }
+                            >
+                                {Object.entries(ORDERING_METHODS).map(
+                                    (orderingMethod) => (
+                                        <option
+                                            key={orderingMethod[1].value}
+                                            value={orderingMethod[1].value}
+                                        >
+                                            {orderingMethod[1].name}
+                                        </option>
+                                    )
+                                )}
+                            </select>
+                        </div>
+                        <fieldset className={style["filter-prices"]}>
+                            <legend className={style["filter-title"]}>
+                                Filter by Price:
+                            </legend>
+                            <div className={style["filter-prices-inputs"]}>
+                                <input
+                                    className={style["price-input"]}
+                                    type="number"
+                                    name="minPrice"
+                                    id="min-price"
+                                    placeholder="Min"
+                                    value={minPrice}
+                                    onChange={(e) => {
+                                        setMinPrice(e.target.value)
+                                        onMinPriceChanged(e.target.value)
+                                    }}
+                                />
+                                <span>-</span>
+                                <input
+                                    className={style["price-input"]}
+                                    type="number"
+                                    name="maxPrice"
+                                    id="max-price"
+                                    placeholder="Max"
+                                    defaultValue={maxPrice}
+                                    onChange={(e) => {
+                                        setMaxPrice(e.target.value)
+                                        onMaxPriceChanged(e.target.value)
+                                    }}
+                                />
+                            </div>
+                        </fieldset>
+                        <fieldset className={style["filter-genres"]}>
+                            <legend className={style["filter-title"]}>
+                                Filter by Genre:
+                            </legend>
+                            <div className={style["genres"]}>
+                                {genres.map((genre) => (
+                                    <GenreInput
+                                        key={genre.id}
+                                        genre={genre}
+                                        checked={selectedGenres.includes(
+                                            genre.slug
+                                        )}
+                                        onChange={onGenreChecked}
+                                    />
+                                ))}
+                            </div>
+                            {selectedGenres.length > 0 && (
+                                <button
+                                    className={style["clear-genres"]}
+                                    type="button"
+                                    onClick={() => {
+                                        setSearchParams(
+                                            (prevParams) => {
+                                                const newParams =
+                                                    new URLSearchParams(
+                                                        prevParams
+                                                    )
+                                                newParams.set("page", "1")
+                                                newParams.delete("genres")
+                                                return newParams
+                                            },
+                                            { replace: true }
+                                        )
+                                    }}
+                                >
+                                    Clear genres
+                                </button>
+                            )}
+                        </fieldset>
+                    </div>
+                </aside>
+            </div>
+            <main
+                className={clsx(
+                    style["games-content"],
+                    !sidebarDisplayed && style["active"]
+                )}
+            >
                 <Suspense
                     fallback={<GamesFetchingFallback />}
                     key={location.key}
