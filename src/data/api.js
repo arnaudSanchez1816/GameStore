@@ -1,10 +1,16 @@
 import { generateRandomPrice } from "../utils"
 import { subDays, lastDayOfMonth, formatISO } from "date-fns"
+import { RateLimiter } from "limiter"
 
 const RAWG_API_KEY = "809c6fd8d85848fb80022b89960016cc"
 const NSFW_TAG_ID = 312
 
 const game_details_cache = new Map()
+
+const rawgApiLimiter = new RateLimiter({
+    tokensPerInterval: 50,
+    interval: "minute",
+})
 
 export const ORDERING_METHODS = {
     rating_desc: { value: "rating_desc", name: "Rating: Best" },
@@ -36,6 +42,12 @@ const API_ORDERING_PARAMS = [
 
 export async function getLatestReleases(nbResults, signal = null) {
     try {
+        await rawgApiLimiter.removeTokens(1)
+
+        if (signal.aborted) {
+            return
+        }
+
         const urlSearchParams = new URLSearchParams()
         urlSearchParams.append("key", RAWG_API_KEY)
         urlSearchParams.append("page_size", 50)
@@ -71,6 +83,12 @@ export async function getLatestReleases(nbResults, signal = null) {
 
 export async function getPopularGames(nbResults, signal = null) {
     try {
+        await rawgApiLimiter.removeTokens(1)
+
+        if (signal.aborted) {
+            return
+        }
+
         const urlSearchParams = new URLSearchParams()
         urlSearchParams.append("key", RAWG_API_KEY)
         urlSearchParams.append("page_size", 50)
@@ -94,6 +112,12 @@ export async function getPopularGames(nbResults, signal = null) {
 
 export async function getBestOfYear(nbResults, signal = null) {
     try {
+        await rawgApiLimiter.removeTokens(1)
+
+        if (signal.aborted) {
+            return
+        }
+
         const urlSearchParams = new URLSearchParams()
         urlSearchParams.append("key", RAWG_API_KEY)
         urlSearchParams.append("page_size", 50)
@@ -122,6 +146,12 @@ export async function getGameDetails(gameId, signal = null) {
     }
 
     try {
+        await rawgApiLimiter.removeTokens(1)
+
+        if (signal.aborted) {
+            return
+        }
+
         const params = new URLSearchParams()
         params.append("key", RAWG_API_KEY)
 
@@ -147,6 +177,12 @@ export async function getGameDetails(gameId, signal = null) {
 
 export async function getGameScreenshots(gameId, signal = null) {
     try {
+        await rawgApiLimiter.removeTokens(1)
+
+        if (signal.aborted) {
+            return
+        }
+
         const params = new URLSearchParams()
         params.append("key", RAWG_API_KEY)
         params.append("page_size", 8)
@@ -182,6 +218,12 @@ export async function queryForGames(
     signal = null
 ) {
     try {
+        await rawgApiLimiter.removeTokens(1)
+
+        if (signal.aborted) {
+            return
+        }
+
         const params = new URLSearchParams()
         params.append("key", RAWG_API_KEY)
         if (name) {
@@ -230,8 +272,6 @@ export async function queryForGames(
         // Filter prices
         if (minPrice >= 0 || maxPrice >= 0) {
             filteredGames = gamesWithPrices.filter((game) => {
-                console.log(game)
-
                 if (minPrice >= 0 && game.price < minPrice) {
                     return false
                 }
