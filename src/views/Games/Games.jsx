@@ -9,9 +9,10 @@ import {
     useSearchParams,
 } from "react-router-dom"
 import GameTile from "../../components/GameTile/GameTile"
-import { Suspense, useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useMemo, useState } from "react"
 import Spinner from "../../components/Spinner/Spinner"
 import clsx from "clsx"
+import { debounce } from "lodash"
 
 function GamesFetchingFallback() {
     return (
@@ -49,73 +50,90 @@ function Games() {
     const location = useLocation()
     const [searchParams, setSearchParams] = useSearchParams()
 
-    const pageRef = useRef(searchParams.get("page"))
+    const page = searchParams.get("page") || "1"
+    const sortOrder = searchParams.get("sortBy") || ""
+    const selectedGenres = searchParams.get("genres")?.split(",") || []
+    const urlMinPrice = searchParams.get("minPrice") || ""
+    const urlMaxPrice = searchParams.get("maxPrice") || ""
 
-    const [sortOrder, setSortOrder] = useState(searchParams.get("sortBy") || "")
-    const [selectedGenres, setSelectedGenres] = useState(
-        searchParams.get("genres")?.split(",") || []
+    const [minPrice, setMinPrice] = useState(urlMinPrice)
+    const [maxPrice, setMaxPrice] = useState(urlMaxPrice)
+
+    const onMinPriceChanged = useMemo(
+        () =>
+            debounce((value) => {
+                setSearchParams(
+                    (prevParams) => {
+                        const newParams = new URLSearchParams(prevParams)
+                        if (value) {
+                            newParams.set("minPrice", value)
+                        }
+                        return newParams
+                    },
+                    { replace: true }
+                )
+            }, 300),
+        [setSearchParams]
     )
-    const [selectedTags, setSelectedTags] = useState(
-        searchParams.get("tags")?.split(",") || []
+    const onMaxPriceChanged = useMemo(
+        () =>
+            debounce((value) => {
+                setSearchParams(
+                    (prevParams) => {
+                        const newParams = new URLSearchParams(prevParams)
+                        if (value) {
+                            newParams.set("maxPrice", value)
+                        }
+                        return newParams
+                    },
+                    { replace: true }
+                )
+            }, 300),
+        [setSearchParams]
     )
-    const [minPrice, setMinPrice] = useState(searchParams.get("minPrice") || "")
-    const [debouncedMinPrice, setDebouncedMinPrice] = useState(minPrice)
-    const [maxPrice, setMaxPrice] = useState(searchParams.get("maxPrice") || "")
-    const [debouncedMaxPrice, setDebouncedMaxPrice] = useState(maxPrice)
-    const searchQuery = searchParams.get("q") || ""
 
     useEffect(() => {
-        const params = new URLSearchParams(location.search)
-        pageRef.current = params.get("page") || "1"
-    }, [location.search])
-
-    useEffect(() => {
-        const params = new URLSearchParams()
-        if (pageRef) params.set("page", pageRef.current)
-        if (sortOrder) params.set("sortBy", sortOrder)
-        if (selectedGenres && selectedGenres.length > 0)
-            params.set("genres", selectedGenres.join(","))
-        if (selectedTags && selectedTags.length > 0)
-            params.set("tags", selectedTags.join(","))
-        if (debouncedMinPrice) params.set("minPrice", debouncedMinPrice)
-        if (debouncedMaxPrice) params.set("maxPrice", debouncedMaxPrice)
-        if (searchQuery) params.set("q", searchQuery)
-        setSearchParams(params, { replace: true })
-    }, [
-        pageRef,
-        searchQuery,
-        sortOrder,
-        selectedGenres,
-        selectedTags,
-        debouncedMinPrice,
-        debouncedMaxPrice,
-        setSearchParams,
-    ])
-
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            pageRef.current = "1"
-            setDebouncedMinPrice(minPrice)
-            setDebouncedMaxPrice(maxPrice)
-        }, 500)
-
-        return () => clearTimeout(timeoutId)
-    }, [minPrice, maxPrice])
+        setMinPrice(urlMinPrice)
+        setMaxPrice(urlMaxPrice)
+    }, [urlMinPrice, urlMaxPrice])
 
     const onGenreChecked = (e) => {
         const checkbox = e.target
 
-        pageRef.current = "1"
         if (checkbox.checked) {
-            setSelectedGenres([...selectedGenres, checkbox.value])
+            setSearchParams(
+                (prevParams) => {
+                    const newParams = new URLSearchParams(prevParams)
+                    newParams.set("genres", [...selectedGenres, checkbox.value])
+                    newParams.set("page", "1")
+                    return newParams
+                },
+                { replace: true }
+            )
         } else {
-            setSelectedGenres(
-                selectedGenres.filter((g) => g !== checkbox.value)
+            setSearchParams(
+                (prevParams) => {
+                    const newParams = new URLSearchParams(prevParams)
+                    const newGenres = selectedGenres.filter(
+                        (g) => g !== checkbox.value
+                    )
+
+                    newParams.delete("genres")
+                    if (newGenres && newGenres.length > 0) {
+                        console.log(newGenres)
+
+                        newParams.set("genres", newGenres)
+                    }
+
+                    newParams.set("page", "1")
+                    return newParams
+                },
+                { replace: true }
             )
         }
     }
 
-    const currentPage = pageRef.current || "1"
+    const currentPage = page
     const previousPageParams = new URLSearchParams(searchParams)
     previousPageParams.set("page", +currentPage - 1)
     const previousPageUrl = `${location.pathname}?${previousPageParams}`
@@ -136,8 +154,14 @@ function Games() {
                             name="sortBy"
                             id="sort"
                             onChange={(e) => {
-                                pageRef.current = "1"
-                                setSortOrder(e.target.value)
+                                setSearchParams((prevParams) => {
+                                    const newParams = new URLSearchParams(
+                                        prevParams
+                                    )
+                                    newParams.set("page", "1")
+                                    newParams.set("sortBy", e.target.value)
+                                    return newParams
+                                })
                             }}
                             value={
                                 sortOrder
@@ -169,7 +193,10 @@ function Games() {
                                 id="min-price"
                                 placeholder="Min"
                                 value={minPrice}
-                                onChange={(e) => setMinPrice(e.target.value)}
+                                onChange={(e) => {
+                                    setMinPrice(e.target.value)
+                                    onMinPriceChanged(e.target.value)
+                                }}
                             />
                             <span>-</span>
                             <input
@@ -178,8 +205,11 @@ function Games() {
                                 name="maxPrice"
                                 id="max-price"
                                 placeholder="Max"
-                                value={maxPrice}
-                                onChange={(e) => setMaxPrice(e.target.value)}
+                                defaultValue={maxPrice}
+                                onChange={(e) => {
+                                    setMaxPrice(e.target.value)
+                                    onMaxPriceChanged(e.target.value)
+                                }}
                             />
                         </div>
                     </fieldset>
@@ -204,8 +234,16 @@ function Games() {
                                 className={style["clear-genres"]}
                                 type="button"
                                 onClick={() => {
-                                    pageRef.current = "1"
-                                    setSelectedGenres([])
+                                    setSearchParams(
+                                        (prevParams) => {
+                                            const newParams =
+                                                new URLSearchParams(prevParams)
+                                            newParams.set("page", "1")
+                                            newParams.delete("genres")
+                                            return newParams
+                                        },
+                                        { replace: true }
+                                    )
                                 }}
                             >
                                 Clear genres
