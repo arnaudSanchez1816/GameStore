@@ -51,8 +51,6 @@ function HeroCarouselNavDot({
     useEffect(() => {
         let anim = null
         if (dotFillRef.current) {
-            console.log("hello ?" + delayDuration)
-
             anim = dotFillRef.current.animate(dotFillAnim, {
                 easing: "linear",
                 duration: delayDuration,
