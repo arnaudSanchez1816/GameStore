@@ -36,6 +36,8 @@ function Footer() {
                         <a
                             className={style["social-link"]}
                             href="https://x.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <Icon
                                 className={style["icon"]}
@@ -45,6 +47,8 @@ function Footer() {
                         <a
                             className={style["social-link"]}
                             href="https://www.facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <Icon
                                 className={style["icon"]}
@@ -54,6 +58,8 @@ function Footer() {
                         <a
                             className={style["social-link"]}
                             href="https://www.instagram.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <Icon
                                 className={style["icon"]}
@@ -63,6 +69,8 @@ function Footer() {
                         <a
                             className={style["social-link"]}
                             href="https://bsky.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <Icon
                                 className={style["icon"]}
@@ -72,6 +80,8 @@ function Footer() {
                         <a
                             className={style["social-link"]}
                             href="https://www.tiktok.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <Icon
                                 className={style["icon"]}
@@ -81,6 +91,8 @@ function Footer() {
                         <a
                             className={style["social-link"]}
                             href="https://www.twitch.tv/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <Icon
                                 className={style["icon"]}
