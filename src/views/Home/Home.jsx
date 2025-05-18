@@ -82,7 +82,10 @@ function Home() {
                 <h2>Popular games</h2>
                 <div className={style["popular-games-grid"]}>
                     {popularGames.map((item, index) => (
-                        <div className={style["popular-game-item"]}>
+                        <div
+                            className={style["popular-game-item"]}
+                            key={item.id}
+                        >
                             <GameTile key={index} game={item} />
                         </div>
                     ))}

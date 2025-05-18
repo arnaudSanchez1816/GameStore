@@ -6,6 +6,7 @@ import { format } from "date-fns"
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 import { getThumbnailLink } from "../../utils"
 import AddToCartButton from "../../components/AddToCartButton/AddToCartButton"
+import { Fragment } from "react"
 
 function Game() {
     const { game, screenshots } = useLoaderData()
@@ -19,19 +20,19 @@ function Game() {
 
     const developers = game.developers.map((dev, index) => {
         return (
-            <>
+            <Fragment key={index}>
                 {index > 0 && <span className={style["comma"]}>, </span>}
                 <span className="developer-link">{dev.name}</span>
-            </>
+            </Fragment>
         )
     })
 
     const publishers = game.publishers.map((pub, index) => {
         return (
-            <>
+            <Fragment key={index}>
                 {index > 0 && <span className={style["comma"]}>, </span>}
                 <span className="publisher-link">{pub.name}</span>
-            </>
+            </Fragment>
         )
     })
 
@@ -149,8 +150,9 @@ function Game() {
                 <div className={style["hero"]}>
                     <h3 className={style["section-heading"]}>Visuals</h3>
                     <HeroCarousel options={{ autoScroll: true }}>
-                        {screenshots.map((screenshot) => (
+                        {screenshots.map((screenshot, index) => (
                             <GameHeroCarouselItem
+                                key={index}
                                 data={{ ...screenshot, name: game.name }}
                             />
                         ))}
