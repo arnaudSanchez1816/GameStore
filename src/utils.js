@@ -16,7 +16,6 @@ export function getThumbnailLink(backgroundImageLink) {
     const regex = /^https:\/\/media\.rawg\.io\/media\/(games\/.*)$/
     const matchResult = backgroundImageLink.match(regex)
     if (!matchResult) {
-        console.error("Failed to match thumbnail link regex")
         return backgroundImageLink
     }
 
