@@ -58,8 +58,6 @@ function GameCarousel({ items }) {
             scrollWidth - clientWidth,
             containerScrollLeft + clientWidth
         )
-        console.log(scrollWidth)
-        console.log(clientWidth)
         viewportRef.current.scroll({
             left: newScrollValue,
             behavior: "auto",
