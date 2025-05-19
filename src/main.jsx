@@ -4,7 +4,7 @@ import "modern-normalize"
 import "./index.css"
 import App, { AppFallback } from "./App.jsx"
 import {
-    createBrowserRouter,
+    createHashRouter,
     createRoutesFromElements,
     Route,
     RouterProvider,
@@ -18,7 +18,7 @@ import Game from "./views/Game/Game.jsx"
 import Games from "./views/Games/Games.jsx"
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart.jsx"
 
-const router = createBrowserRouter(
+const router = createHashRouter(
     createRoutesFromElements(
         <Route
             path="/"
