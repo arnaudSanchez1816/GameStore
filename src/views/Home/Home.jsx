@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom"
+import { Link, useLoaderData } from "react-router-dom"
 import GameCarousel from "../../components/GameCarousel/GameCarousel"
 import GameTile from "../../components/GameTile/GameTile"
 import HeroCarousel from "../../components/HeroCarousel/HeroCarousel"
@@ -27,14 +27,14 @@ function GenreTile({ genre }) {
     searchParams.set("genres", slug)
 
     return (
-        <a
-            href={`/games?${searchParams}`}
+        <Link
+            to={`/games?${searchParams}`}
             className={clsx("button", style["genre-link"])}
             key={id}
         >
             <span className={style["genre-name"]}>{name}</span>
             <Icon className={style["genre-icon"]} icon={icon} />
-        </a>
+        </Link>
     )
 }
 
