@@ -1,0 +1,185 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Hero Carousel > to render items 1`] = `
+<div>
+  <div
+    class="_hero-carousel_d37b2b"
+  >
+    <div
+      class="_row-container_d37b2b"
+    >
+      <ol
+        class="_row-list_d37b2b"
+      >
+        <li
+          class="_row-item_d37b2b active"
+        >
+          <div>
+            Game 
+            0
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            1
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            2
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            3
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            4
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            5
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            6
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            7
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            8
+          </div>
+        </li>
+        <li
+          class="_row-item_d37b2b"
+        >
+          <div>
+            Game 
+            9
+          </div>
+        </li>
+      </ol>
+      <div
+        class="_controls-right_6c2e0f"
+      >
+        <button
+          aria-label="Right"
+          class="_controls-btn_6c2e0f"
+          type="button"
+        >
+          <iconify-icon
+            icon="mdi:chevron-right"
+          />
+        </button>
+      </div>
+    </div>
+    <ol
+      class="_dots-list_d37b2b"
+    >
+      <li>
+        <button
+          aria-label="Item 1"
+          class="_dot_d37b2b _active_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 2"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 3"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 4"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 5"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 6"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 7"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 8"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 9"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          aria-label="Item 10"
+          class="_dot_d37b2b"
+          type="button"
+        />
+      </li>
+    </ol>
+  </div>
+</div>
+`;

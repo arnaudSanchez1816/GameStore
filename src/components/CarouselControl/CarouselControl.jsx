@@ -8,6 +8,7 @@ export function CarouselControlLeft({ onControlClick }) {
                 className={style["controls-btn"]}
                 type="button"
                 onClick={onControlClick}
+                aria-label="Left"
             >
                 <Icon icon="mdi:chevron-left" />
             </button>
@@ -22,6 +23,7 @@ export function CarouselControlRight({ onControlClick }) {
                 className={style["controls-btn"]}
                 type="button"
                 onClick={onControlClick}
+                aria-label="Right"
             >
                 <Icon icon="mdi:chevron-right" />
             </button>

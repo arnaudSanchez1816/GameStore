@@ -67,6 +67,7 @@ function HeroCarouselNavDot({
             type="button"
             className={clsx(style["dot"], isActive && style["active"])}
             onClick={onDotClick}
+            aria-label={`Item ${index + 1}`}
         >
             {hasDelay && <div className={style["dot-fill"]} ref={dotFillRef} />}
         </button>
