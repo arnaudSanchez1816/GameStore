@@ -66,7 +66,7 @@ export async function getLatestReleases(nbResults, signal = null) {
 
         const response = await fetch(
             `https://api.rawg.io/api/games?${urlSearchParams}`,
-            { signal }
+            { signal, mode: "cors" }
         )
 
         if (response.status >= 400) {
@@ -95,7 +95,7 @@ export async function getPopularGames(nbResults, signal = null) {
 
         const response = await fetch(
             `https://api.rawg.io/api/games/lists/popular?${urlSearchParams}`,
-            { signal }
+            { signal, mode: "cors" }
         )
 
         if (response.status >= 400) {
@@ -125,7 +125,7 @@ export async function getBestOfYear(nbResults, signal = null) {
 
         const response = await fetch(
             `https://rawg.io/api/games/lists/greatest?${urlSearchParams}`,
-            { signal }
+            { signal, mode: "cors" }
         )
 
         if (response.status >= 400) {
@@ -157,7 +157,7 @@ export async function getGameDetails(gameId, signal = null) {
 
         const response = await fetch(
             `https://api.rawg.io/api/games/${gameId}?${params}`,
-            { signal }
+            { signal, mode: "cors" }
         )
 
         if (response.status >= 400) {
@@ -189,7 +189,7 @@ export async function getGameScreenshots(gameId, signal = null) {
 
         const response = await fetch(
             `https://api.rawg.io/api/games/${gameId}/screenshots?${params}`,
-            { signal }
+            { signal, mode: "cors" }
         )
 
         if (response.status >= 400) {
@@ -257,7 +257,7 @@ export async function queryForGames(
 
         const response = await fetch(
             `https://api.rawg.io/api/games?${params}`,
-            { signal }
+            { signal, mode: "cors" }
         )
 
         if (response.status >= 400) {
