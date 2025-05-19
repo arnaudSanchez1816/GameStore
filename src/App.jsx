@@ -18,7 +18,7 @@ export function AppFallback() {
 function App() {
     const [cartData, setCartData] = useState([
         { id: 250, count: 1 },
-        { id: 5000, count: 2 },
+        { id: 22511, count: 1 },
     ])
     const navigation = useNavigation()
     const isLoading = navigation.state === "loading"
