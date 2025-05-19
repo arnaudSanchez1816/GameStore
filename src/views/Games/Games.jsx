@@ -67,6 +67,7 @@ function Games() {
                 setSearchParams(
                     (prevParams) => {
                         const newParams = new URLSearchParams(prevParams)
+                        newParams.delete("minPrice")
                         if (value) {
                             newParams.set("minPrice", value)
                         }
@@ -83,6 +84,7 @@ function Games() {
                 setSearchParams(
                     (prevParams) => {
                         const newParams = new URLSearchParams(prevParams)
+                        newParams.delete("maxPrice")
                         if (value) {
                             newParams.set("maxPrice", value)
                         }
