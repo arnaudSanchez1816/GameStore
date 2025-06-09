@@ -3,7 +3,7 @@ import { subDays, lastDayOfMonth, formatISO } from "date-fns"
 import { RateLimiter } from "limiter"
 
 const RAWG_API_KEY = "809c6fd8d85848fb80022b89960016cc"
-const NSFW_TAG_ID = 312
+export const NSFW_TAG_ID = 312
 
 const game_details_cache = new Map()
 
