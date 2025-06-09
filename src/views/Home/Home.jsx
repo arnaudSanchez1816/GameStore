@@ -90,12 +90,12 @@ function Home() {
                         </div>
                     ))}
                 </div>
-                <a
+                <Link
                     className={clsx("button", style["all-games-link"])}
-                    href="/games/"
+                    to="/games/"
                 >
                     Display all games
-                </a>
+                </Link>
             </div>
             <div className={style["newsletter"]}>
                 <div className={style["section"]}>
