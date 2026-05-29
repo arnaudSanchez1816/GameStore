@@ -305,7 +305,7 @@ function filterNSFWGames(games) {
     const results = []
     for (let i = 0; i < games.length; i++) {
         const game = games[i]
-        const tags = game.tags
+        const tags = game.tags || []
         if (tags.find((tag) => tag.id === NSFW_TAG_ID)) {
             // Skip nsfw garbage
             continue
